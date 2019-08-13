@@ -40,7 +40,7 @@ try
 	s = connect.createStatement();
 
  
-  String cus_code,cus_name_en,name,type,indust,tel,email,website,st,su,city,region,stat,zip,country,taxid,date,time;
+  String cus_code,cus_name_en,name,type,indust,tel,email,website,st,su,city,region,stat,zip,country,taxid,date,time,ed_name;
   
   cus_code = request.getParameter("Cust_Code"); 
   cus_name_en = request.getParameter("Cust_Name_EN");  
@@ -66,12 +66,14 @@ try
  Calendar cal = Calendar.getInstance();
  SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
  time = sdf.format(cal.getTime() );
+ 
+ ed_name = String.valueOf(session.getAttribute("username_en"));
 
   
   PreparedStatement pstmt=null; //create statement 
   
-  pstmt=connect.prepareStatement("INSERT INTO erp1.customer(CUST_CD,CUST_NAME_EN,CUST_NAME,TYPE,INDUST,TEL,EMAIL,WEBSITE,ADDR_ST,ADDR_SU,ADDR_CITY,ADDR_REG,ADDR_STAT,ADDR_ZIP,ADDR_COUNT,TAX_ID,REG_DATE,REG_TIME)VALUES"
-          + "                    (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
+  pstmt=connect.prepareStatement("INSERT INTO erp1.customer(CUST_CD,CUST_NAME_EN,CUST_NAME,TYPE,INDUST,TEL,EMAIL,WEBSITE,ADDR_ST,ADDR_SU,ADDR_CITY,ADDR_REG,ADDR_STAT,ADDR_ZIP,ADDR_COUNT,TAX_ID,REG_DATE,REG_TIME,ED_NAME)VALUES"
+          + "                    (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
   
   pstmt.setString(1,cus_code); 
   pstmt.setString(2,cus_name_en); 
@@ -90,12 +92,12 @@ try
   pstmt.setString(15,country); 
   pstmt.setString(16,taxid); 
   pstmt.setString(17,date); 
-  pstmt.setString(18,time); 
+  pstmt.setString(18,time);
+  pstmt.setString(19,ed_name); 
 
   pstmt.executeUpdate(); //execute query
   
   connect.close();  //close connection 
-  
   out.println("Insert Successfully...! Click Back link.");// after insert record successfully message
   
  
