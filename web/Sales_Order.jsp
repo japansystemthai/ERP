@@ -552,14 +552,12 @@
 
                 document.location.href = "Edit_Sales_Order.jsp?ODID=" + odid;
 
-
-
             }
 
-            function deletet(qtid) {
+            function deletet(odid) {
                 var r = confirm("Are you sure you want to delete it?");
                 if (r === true) {
-                    document.location.href = "Del.jsp?QTID=" + qtid;
+                    document.location.href = "Del.jsp?ODID=" + odid;
 
                 } else {
                     document.location.href = "Quotation.jsp";

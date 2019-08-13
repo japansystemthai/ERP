@@ -27,6 +27,7 @@
         String strProductID = request.getParameter("ProID");
         String strCustomerID = request.getParameter("CusID");
         String strQuotationID = request.getParameter("QTID");
+        String strOrderID = request.getParameter("ODID");
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
@@ -83,8 +84,21 @@ else if (strQuotationID != null) {
 <meta http-equiv= refresh content= 0;URL=Quotation.jsp>
 
 <%
-        }
+        }else if (strOrderID != null) {
 
+    pstmt = connect.prepareStatement("UPDATE erp1.od_head SET FLG1 = 1,UPD_DATE = ?,UPD_TIME = ?,FLG2 = 1  WHERE OD_ID = ?"); //sql update query 
+
+    pstmt.setString(1, date);
+    pstmt.setString(2, time);
+    pstmt.setString(3,strOrderID );
+
+    pstmt.executeUpdate(); //execute query
+
+    connect.close();
+%>
+<meta http-equiv= refresh content= 0;URL=Quotation.jsp>
+<%
+    }
     } catch (Exception e) {
         // TODO Auto-generated catch block
         out.println(e.getMessage());
