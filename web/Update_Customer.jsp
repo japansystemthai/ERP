@@ -28,7 +28,7 @@
 
         connect = DriverManager.getConnection(connectionUrl + dbName, userId, password);
 
-        String cus_name_en, cus_cd, name, type, indust, tel, email, website, st, su, city, region, stat, zip, country, taxid, date, time;
+        String cus_name_en, cus_cd, name, type, indust, tel, email, website, st, su, city, region, stat, zip, country, taxid, date, time,ed_name;
         Integer cus_id;
 
         cus_id = Integer.parseInt(request.getParameter("cus_id"));
@@ -56,12 +56,13 @@
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         time = sdf.format(cal.getTime());
+        ed_name = String.valueOf(session.getAttribute("username_en"));
 
         PreparedStatement pstmt = null; //create statement 
 
         pstmt = connect.prepareStatement("UPDATE erp1.customer "
                 + "SET CUST_CD = ?, CUST_NAME_EN = ?,CUST_NAME = ?,TYPE = ?,INDUST = ?,TEL = ?,EMAIL = ?,WEBSITE = ?,ADDR_ST = ?,ADDR_SU = ?,"
-                + "ADDR_CITY = ?,ADDR_REG = ?,ADDR_STAT = ?,ADDR_ZIP = ?,ADDR_COUNT = ?,TAX_ID = ?,UPD_DATE = ?,UPD_TIME = ?"
+                + "ADDR_CITY = ?,ADDR_REG = ?,ADDR_STAT = ?,ADDR_ZIP = ?,ADDR_COUNT = ?,TAX_ID = ?,UPD_DATE = ?,UPD_TIME = ?,ED_NAME = ?"
                 + "WHERE CUST_ID = ?;"); //sql update query 
 
         pstmt.setString(1, cus_cd);
@@ -82,7 +83,8 @@
         pstmt.setString(16, taxid);
         pstmt.setString(17, date);
         pstmt.setString(18, time);
-        pstmt.setInt(19, cus_id);
+        pstmt.setString(19, ed_name);
+        pstmt.setInt(20, cus_id);
 
         pstmt.executeUpdate(); //execute query
 
