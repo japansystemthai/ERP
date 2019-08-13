@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="product" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4c1577c-d170-415f-9152-daa1631c54a5">
+	<property name="ireport.zoom" value="1.210000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from product;]]>
+	</queryString>
+	<field name="ITEM_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITEM_NAME_EN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITEM_NAME_TH" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SIZE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPEC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUST_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CURR_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ST_PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MT_UNIT_PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PROC_PRICE" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REG_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REG_TIME" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FLG1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPD_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPD_TIME" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FLG2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8ca0fb61-4e58-4ca6-a14d-cc871cbd9237" x="188" y="0" width="418" height="34"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Product Master List]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="212bbd7b-3698-4eb8-abf5-4b7a075eb058" x="685" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44573b18-78d5-4ca6-9317-0735557ba0bf" x="655" y="0" width="30" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="76" splitType="Stretch">
+			<textField>
+				<reportElement uuid="5a741971-3433-40db-9f68-436935cec3e8" x="328" y="1" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITEM_NAME_TH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ffff4b5f-6d90-4bc2-9538-6b13c7e29cef" x="458" y="1" width="44" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SIZE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8bc2c9a9-fe6d-42dc-b994-2c19e5d863b4" x="537" y="1" width="63" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SPEC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d5b60212-b6a1-438b-8317-3ce1f0e1ae89" x="655" y="1" width="71" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUST_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5be20301-d002-4ddd-8dc8-991ece55addc" x="121" y="21" width="62" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CURR_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b3e48921-ca70-4fe5-b032-dc8c88637e7f" x="239" y="21" width="71" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ST_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="536bbcf8-fcc0-4270-b77c-0a7b5e5f4150" x="398" y="21" width="68" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MT_UNIT_PRICE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="236a2c0d-2fb8-4748-89fd-3d654e758eb2" x="537" y="20" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROC_PRICE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="916b1de6-df50-4646-892f-fbe6f86e3301" x="0" y="0" width="56" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ITEM_NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8604ce5e-1b37-4e71-994b-0b364b640533" x="74" y="1" width="83" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ITEM_NAME_EN : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c748c697-222c-4138-8f16-18fd3985a1a0" x="242" y="1" width="86" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ITEM_NAME_TH : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b56c45aa-f624-424f-99ae-6a418acc1f53" x="0" y="20" width="56" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITEM_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dc5b81c3-d82e-4746-b084-064ed221460e" x="157" y="1" width="85" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ITEM_NAME_EN}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2da28194-6031-4f48-aeab-fe5bb037da44" x="428" y="1" width="30" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIZE : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6c65182d-1b7d-459e-a6fb-2fe55cf77911" x="502" y="1" width="35" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SPEC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11d9b37b-6679-4433-9482-dd97b7ae2a78" x="600" y="1" width="55" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUST_ID : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9343ad2-4a51-45fc-b932-a97f9829649d" x="74" y="21" width="47" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CURR_ID : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9b5338a9-e9ae-44c6-aa01-f47486f528ea" x="183" y="21" width="56" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ST_PRICE : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8bb5e8a7-cb62-4dc7-a638-f6a343f143ef" x="310" y="21" width="88" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MT_UNIT_PRICE : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="09129e4a-1eef-4fa1-b736-c5d834497b5b" x="466" y="20" width="71" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROC_PRICE : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6fae7ac9-103a-4571-8596-9e3592aef49c" x="74" y="40" width="57" height="21"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REG_DATE : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7d8f780f-9255-4cba-9ee6-e4675b54097b" x="231" y="40" width="53" height="21"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="TH Sarabun New" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REG_TIME :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="71dd2e24-6044-4be2-920a-b8ea388c2a60" x="131" y="40" width="100" height="21"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{REG_DATE}]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH.mm.ss">
+				<reportElement uuid="8d17dd6f-ac02-4860-a34c-c407bf5f185b" x="284" y="40" width="100" height="21"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{REG_TIME}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="64ed4113-6aa5-4d86-8ebe-b74e32cd224e" x="0" y="61" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="f896cc4c-bea4-4ed1-ac7e-1407f6886040" x="384" y="38" width="39" height="22"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FLG1 : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="84c9330e-05ad-412b-946e-dab170184f3b" x="423" y="38" width="30" height="21"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FLG1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="2b314838-06a7-43ea-87b6-e8f4356b3caf" x="453" y="38" width="62" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[UPD_DATE : ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="76146960-36c0-402d-b971-a3b2e20e9b24" x="515" y="38" width="68" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{UPD_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c1108a60-d5e5-4947-9b56-0f6f8fa888cc" x="583" y="38" width="60" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[UPD_TIME : ]]></text>
+			</staticText>
+			<textField pattern="HH.mm.ss">
+				<reportElement uuid="084b01be-8706-40be-a7d4-96d18145d704" x="643" y="38" width="61" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{UPD_TIME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="8095d597-76c3-4a72-94c9-0fc3f49e82aa" x="704" y="38" width="37" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FLG2 : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a9c5eb5b-34fa-40c5-abe4-7e64b14e1271" x="741" y="38" width="26" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{FLG2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="d662981c-d7ad-4c19-94ef-8f9b2358c336" x="42" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="af3d2a04-f309-4f82-a85a-5bffcd1a2694" x="685" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="4d7d2ec0-47f3-4f76-bd87-ee664260d642" x="765" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44573b18-78d5-4ca6-9317-0735557ba0bf" x="12" y="0" width="30" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date: ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

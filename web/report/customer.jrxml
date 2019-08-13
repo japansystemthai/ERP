@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="01845fc3-5641-4bd1-a063-ba917c5bd6d3">
+	<property name="ireport.zoom" value="1.2100000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT *
+FROM customer]]>
+	</queryString>
+	<field name="CUST_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUST_CD" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUST_NAME_EN" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUST_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TYPE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[1 = Client
+2 = Supplier
+3 = Partner
+4 = Other]]></fieldDescription>
+	</field>
+	<field name="INDUST" class="java.lang.Integer">
+		<fieldDescription><![CDATA[industry
+1 = information Technology
+2 = Manufacturing
+3 = Banking Services
+4 = Consulting
+5= Finance
+6 = Government
+7 = Delivery
+8 = Entertainment
+9 = Non-Profit
+0 = Other]]></fieldDescription>
+	</field>
+	<field name="TEL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMAIL" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="WEBSITE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADDR_ST" class="java.lang.String">
+		<fieldDescription><![CDATA[Street,Building]]></fieldDescription>
+	</field>
+	<field name="ADDR_SU" class="java.lang.String">
+		<fieldDescription><![CDATA[Suite,Apartment]]></fieldDescription>
+	</field>
+	<field name="ADDR_SITY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADDR_REG" class="java.lang.String">
+		<fieldDescription><![CDATA[Region]]></fieldDescription>
+	</field>
+	<field name="ADDR_STAT" class="java.lang.String">
+		<fieldDescription><![CDATA[Stat/Province]]></fieldDescription>
+	</field>
+	<field name="ADDR_ZIP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADDR_COUNT" class="java.lang.String">
+		<fieldDescription><![CDATA[Country]]></fieldDescription>
+	</field>
+	<field name="TAX_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[Update 23-Apr-2019]]></fieldDescription>
+	</field>
+	<field name="REG_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REG_TIME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FLG1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPD_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPD_TIME" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FLG2" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<frame>
+				<reportElement x="-2" y="0" width="802" height="47" uuid="6a244e75-1eaf-4ab5-898d-862b24f7d3f3"/>
+				<staticText>
+					<reportElement x="175" y="0" width="418" height="47" uuid="8ca0fb61-4e58-4ca6-a14d-cc871cbd9237"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="28" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Customer Master List]]></text>
+				</staticText>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement x="686" y="13" width="100" height="20" uuid="ac716ba9-5915-4922-b0c0-02fe393484d3"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="654" y="13" width="32" height="20" uuid="e8534727-97bc-462d-87ec-5369cc5c4102"/>
+					<textFieldExpression><![CDATA["Date : "]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="128" splitType="Stretch">
+			<frame>
+				<reportElement x="2" y="0" width="800" height="122" uuid="0a01b517-731d-4e80-93de-790d197ea218"/>
+				<textField>
+					<reportElement x="386" y="0" width="100" height="20" uuid="5bd84385-6307-4983-8cc7-4de2fc885b43"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CUST_NAME_EN}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="558" y="0" width="100" height="20" uuid="e88cdbdb-2a4e-431e-8056-75aa64f1393f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CUST_NAME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="176" y="20" width="36" height="20" uuid="644aa545-2768-4db0-8a91-f5c5e19e98cc"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TYPE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="547" y="80" width="251" height="20" uuid="a5e562b4-16ab-4602-9df7-628d5e17e217"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_ZIP}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="707" y="60" width="91" height="20" uuid="2f715bc9-bb0f-4502-8ac3-816e4260ea99"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_COUNT}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="196" y="0" width="95" height="20" uuid="fa019a89-4d2e-48ae-bddf-44950ccfb327"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CUST_CD}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="259" y="20" width="31" height="20" uuid="e8c571f0-1807-40e4-ac1d-1b41e2c4c6af"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{INDUST}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="332" y="20" width="154" height="20" uuid="3ad0b1de-1279-41b4-a343-9bd5960a693b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="539" y="20" width="130" height="20" uuid="537d6193-f8f9-40c6-b003-ff793b87978b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{WEBSITE}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="696" y="20" width="102" height="20" uuid="91f9afc8-aa37-42f0-98c8-6109011decc9"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TEL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="196" y="40" width="290" height="20" uuid="dedbb877-d0ca-4647-b462-2ba402eb75e5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_ST}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="539" y="40" width="259" height="20" uuid="cc6c393c-c8c3-4694-9ead-c4c96fc5bffd"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_SU}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="202" y="60" width="284" height="20" uuid="814bbd87-5b7b-4b20-972a-095bb2d81c5e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_SITY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="547" y="60" width="83" height="20" uuid="f678ba6e-3bc6-446c-bd65-059cd24f4148"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_REG}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="20" width="100" height="20" uuid="fed65e96-5b5a-4d0b-b1b8-045c3272f975"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CUST_ID}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="120" width="800" height="1" uuid="410065c2-da19-4859-bc5f-ec1ae8116206"/>
+				</line>
+				<staticText>
+					<reportElement x="0" y="0" width="100" height="20" uuid="821dbcab-af8c-4a8f-a6fa-16b1c799ab1e"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUST_ID]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="0" width="57" height="20" uuid="7f2b79ed-4bc4-4ef7-be6a-3564de43562e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUST_CD :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="291" y="0" width="95" height="20" uuid="7d9e434c-44e7-4ff3-a54c-8393958d39fb"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUST_NAME_EN :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="0" width="72" height="20" uuid="5d421489-7a44-4324-b739-8b692f230ed7"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUST_NAME :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="20" width="37" height="20" uuid="7d8e254b-c853-4954-8326-e5b093084258"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TYPE : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="212" y="20" width="47" height="20" uuid="e3e0748d-3232-4319-95bb-4e65dca18e6c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[INDUST : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="291" y="20" width="41" height="20" uuid="bf0dc1f7-f2a5-45dd-8cbf-f17331005c07"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[EMAIL : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="669" y="20" width="27" height="20" uuid="19e86e81-cdf8-4721-9776-ec5432fa4a8b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TEL : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="20" width="53" height="20" uuid="b3f88a37-1fdd-4021-b237-c8051c4f58e9"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[WEBSITE : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="40" width="57" height="20" uuid="81ff5d4a-2bb7-4fbc-93dc-4de82befe6a6"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_ST : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="40" width="53" height="20" uuid="b5fbc174-e6f7-4af3-8126-04dae453a6e2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_SU : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="60" width="63" height="20" uuid="8f79d370-945d-4b19-a39c-2a31aedd5351"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_CITY : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="60" width="59" height="20" uuid="2eac4f4e-821a-45b3-a796-781eaf0139e8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_REG : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="139" y="80" width="65" height="20" uuid="c653304e-1f65-4aa3-b62e-217572228bd9"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_STAT : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="205" y="80" width="281" height="20" uuid="b04f9df2-5581-49ba-9243-fad5428a2723"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ADDR_STAT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="630" y="60" width="77" height="20" uuid="361b63fd-5133-4137-b1ff-15f5f1ce3cc2"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_COUNT : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="80" width="61" height="20" uuid="ddfe99b9-db04-414a-89b1-43d5ba209d92"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ADDR_ZIP : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="100" width="46" height="20" uuid="bfe58080-d355-4437-95b4-35b8bd73ec0f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TAX ID : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="46" y="100" width="93" height="20" uuid="c4e429e6-58af-4966-a2fd-881808bc4f35"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{TAX_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="139" y="100" width="61" height="20" uuid="c6fe090e-1b71-4a0d-a2c7-4d0704542557"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REG_DATE : ]]></text>
+				</staticText>
+				<textField pattern="MM/dd/yyyy">
+					<reportElement x="200" y="100" width="67" height="20" uuid="79d0439f-206b-4ad2-8488-f9c92638b704"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{REG_DATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="270" y="100" width="56" height="20" uuid="3d07ed17-f808-49ff-a56b-90b703b6cfd0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REG_TIME : ]]></text>
+				</staticText>
+				<textField pattern="HH.mm.ss">
+					<reportElement x="326" y="100" width="53" height="20" uuid="79e308a0-86d9-41ba-8639-db59a63d7b3e"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{REG_TIME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="379" y="100" width="35" height="20" uuid="85ade0fd-3395-45bf-bddf-8fd9ffa58250"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FLG1 : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="414" y="100" width="35" height="20" uuid="981a653a-b9db-4360-b643-b7461e7aead0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FLG1}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="449" y="100" width="61" height="20" uuid="6a5cf78a-ce6d-4426-8143-e4a05f2ae4b0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UPD_DATE : ]]></text>
+				</staticText>
+				<textField pattern="MM/dd/yyyy">
+					<reportElement x="510" y="100" width="79" height="20" uuid="9d9fcfcf-f6af-4789-9380-d225fcb72149"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{UPD_DATE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="589" y="100" width="61" height="20" uuid="060de47e-2a51-49c0-a9c6-c93fe2c6a502"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UPD_TIME : ]]></text>
+				</staticText>
+				<textField pattern="HH.mm.ss">
+					<reportElement x="652" y="100" width="52" height="20" uuid="4b724dfc-59f3-4957-b6b7-78d9688b4671"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{UPD_TIME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="707" y="100" width="35" height="20" uuid="06c3781c-ec37-44ce-9ceb-be39dde2fe37"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[FLG2 : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="742" y="100" width="35" height="20" uuid="eed13da4-e57f-4ece-9ece-cb2b274a1369"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="TH Sarabun New" size="15" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FLG2}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="24" splitType="Stretch">
+			<frame>
+				<reportElement x="2" y="0" width="800" height="21" uuid="9ce15323-e23a-41c6-8792-60c80d800089"/>
+				<textField>
+					<reportElement x="652" y="0" width="80" height="20" uuid="dc1ce00b-5e90-45d6-91ed-843bc31d6db6"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="10" y="0" width="32" height="18" uuid="02cf19b1-7c18-42bf-a15b-80f3c439423e"/>
+					<textFieldExpression><![CDATA["Date : "]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="732" y="0" width="40" height="20" uuid="9ca8771c-42a1-4329-b55f-1c1fc51ed76b"/>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd MMMMM yyyy">
+					<reportElement x="42" y="0" width="100" height="18" uuid="1f638090-12eb-4b16-9009-1f01c80516f6"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</columnFooter>
+</jasperReport>

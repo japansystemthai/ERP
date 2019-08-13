@@ -1,0 +1,122 @@
+@media screen and (max-width: 400px) {
+    .navText{
+        text-align: center;
+        font-size: 20px;
+    }
+  }
+body{
+    background-color: #fff;
+    font-family: 'Roboto', sans-serif;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    padding: 30px;
+    background-color: #555;
+    color: #fff;
+    font-size: 90%;
+    text-align: right;
+    font-family: 'Open Sans Condensed', sans-serif; /*ตัวบาง*/
+}
+/*------------------ navbar หลัก ที่มี logo -----------------------*/
+.navbars{
+    width: 100%;
+    border-bottom: 1px solid #5a5255;
+    margin: auto;
+    background-color: white;
+    height: 55px;
+    left: 0;
+    position: fixed;
+}
+.navText{
+    text-align: center;
+    padding: 5px 0px 3px 0px;
+    border-style: solid;
+    border: black;
+}
+.imgLogoJps{
+    /*
+    width: 75px;
+    height: 70px;
+    position: absolute; */
+    width: 55px; height: 50px;position: absolute;
+}
+/*------------------ หน้า login -----------------------*/
+.textLogin{
+    border-bottom: 1px solid #333;
+    text-align: center;
+    padding: 8px 8px;
+    color: #333;
+    /*box-shadow: 0px 1px 1px #555;*/
+}
+.formLogin{
+    width: 500px;
+    height: 250px;
+    border: 1px solid gray;
+    background-color: #c3d9fa;
+    border-radius: 5px;
+    position: fixed;
+    left: 50%;
+    top: 125px;
+    transform: translate(-50%, 0%);
+}
+.formInside{
+    padding: 20px 20px 20px 20px;
+}
+.textlogin{
+    width: 250px;
+    padding: 2px;
+    background-color: transparent;
+    margin: 3px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    text-align: left;
+}
+.btnLogin, .btnClear{   /* ปุ่ม login */
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    width: 120px;
+    padding: 4px;
+    margin: 5px 2px 5px 2px;
+}
+.btnLogin{ background-color: #8caddf;}
+.btnClear{ background-color: #fff;}
+.btnClear:hover{
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: lightgray;
+}
+.btnLogin:hover{
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: #6d87ad;
+    color: #fff;
+}
+/*========= หน้า login error Massage =========*/
+#errorMsg{
+    color: red;
+}
+/*=============== home =====================*/
+.navBarHome{
+    background-color: #fff;
+    border-bottom: 1px solid lightgray;
+    /*box-shadow: 0px 1px 3px #333; */
+}
+.fasBtn{
+    font-size: 100px;
+}
+/*------------- sideBarMenu ----------------*/
+.sideBarMenu{
+    width: 200px;
+    height: 100%;
+    border: 1px solid lightgray;
+    position: fixed;
+    transition: 0.3s;
+}
+.sideBarMenu h6{
+    margin: 15px;
+}
+
