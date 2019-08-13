@@ -799,8 +799,8 @@
                             <% count++ ;
                                 } 
                             }%>
-                        <input name="countPro" id="countPro" value="<%=countPro%>" hidden="">
-                        <input id="save_counter" name="save_counter" value="<%= count %>" hidden="">
+                        <input name="countPro" id="countPro" value="<%=countPro%>">
+                        <input id="save_counter" name="save_counter" value="<%= count %>">
                         </tbody>
 
                     </table>

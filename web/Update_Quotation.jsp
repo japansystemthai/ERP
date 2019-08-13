@@ -46,7 +46,17 @@
         String date, time;
 
         float qt_amt, qt_amt_wotax, qt_discount, qt_subtotal, qt_vat;
-        int qt_flg1 = 1, flg1 = 1, qt_id;
+        int qt_flg1 = 1, flg1 = 1, qt_id,save_counter;
+        
+        save_counter = Integer.parseInt(request.getParameter("save_counter"));
+        
+        if (save_counter == 0) {%>
+
+       <script>alert('Please Enter Product');</script>
+       <meta http-equiv= refresh content= 1;URL=Quotation.jsp>
+
+<%
+    } else {
 
         qt_id = Integer.parseInt(request.getParameter("ID"));
         qt_no = request.getParameter("Quotation_no");
@@ -80,6 +90,7 @@
         upd_time = time;
         reg_date = date;
         reg_time = time;
+        
 
 //
         PreparedStatement pstmt = null, pstmtd = null, pstmtds = null; //create statement 
@@ -143,15 +154,14 @@
         String selectpro;
         String qtd_id_str;
 
-        int qt_qty, qtd_id, qtd_qt_idi, qtd_lineno, countPro, save_counter;
+        int qt_qty, qtd_id, qtd_qt_idi, qtd_lineno, countPro;
         String qtd_qt_ids, qtd_dest,qtd_des_head;
         float qt_dis_amt, qt_dis_per, qtd_amt, qtd_unit_per_price, qtd_amt_a_dis;
         qtd_qt_idi = Integer.parseInt(request.getParameter("ID"));
         int y = 0;
         qtd_qt_ids = request.getParameter("ID");
         countPro = Integer.parseInt(request.getParameter("countPro"));
-        save_counter = Integer.parseInt(request.getParameter("save_counter"));
-
+        
         if (countPro == save_counter) {
             for (int i = 1; i <= countPro; i++) {
                 qtd_lineno = Integer.parseInt(request.getParameter("line" + i));
@@ -321,12 +331,14 @@
             }
 
         }
+
 //
         out.println("Update Successfully...!");// after insert record successfully message
 
 %>
 <meta http-equiv=refresh content=1;URL=Quotation.jsp>
-<%    } catch (Exception e) {
+<%    } 
+        }catch (Exception e) {
 
         out.println(e);
        

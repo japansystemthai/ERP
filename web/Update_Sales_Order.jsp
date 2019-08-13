@@ -46,7 +46,7 @@
         String date, time;
 
         float od_amt, od_amt_wotax, od_discount, od_subtotal, od_vat;
-        int od_flg1 = 1, flg1 = 1, od_id;
+        int od_flg1 = 1, flg1 = 1, od_id, save_counter;
 
         od_id = Integer.parseInt(request.getParameter("od_id"));
         od_no = request.getParameter("od_no");
@@ -78,6 +78,15 @@
         upd_time = time;
         reg_date = date;
         reg_time = time;
+        save_counter = Integer.parseInt(request.getParameter("save_counter"));
+        
+         if (save_counter == 0) {%>
+
+       <script>alert('Please Enter Product');</script>
+       <meta http-equiv= refresh content= 1;URL=Sales_Order.jsp>
+
+<%
+    } else {
         
 
 //
@@ -141,7 +150,7 @@
 ////                        
         String selectpro;
 
-        int odd_qty, odd_od_idi, odd_lineno, countPro, save_counter;
+        int odd_qty, odd_od_idi, odd_lineno, countPro;
         String odd_od_ids, odd_dest,odd_des_head;
         float odd_dis_amt, odd_dis_per, odd_amt, odd_unit_per_price, odd_amt_a_dis;
         int y = 0;
@@ -150,7 +159,7 @@
 //        out.print(odd_od_ids);
         
         countPro = Integer.parseInt(request.getParameter("countPro"));
-        save_counter = Integer.parseInt(request.getParameter("save_counter"));
+        
 
         if (countPro == save_counter) {
             for (int i = 1; i <= countPro; i++) {
@@ -323,16 +332,17 @@
             }
 
         }
+
 //
         out.println("Update Successfully...!");// after insert record successfully message
 
 %>
 <meta http-equiv=refresh content=1;URL=Sales_Order.jsp>
-<%    } catch (Exception e) {
+<%    }
+       
+  } catch (Exception e) {
 
         out.println(e);
-       
-
 //
 //        }
     }

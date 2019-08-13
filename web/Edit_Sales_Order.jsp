@@ -882,7 +882,7 @@
                         }
                         return true;
                     }
-   function del_line(r){
+           function del_line(r){
                         var count = parseInt(document.getElementById("save_counter").value);
                         var i = r.parentNode.parentNode.rowIndex;
                         document.getElementById("Table_price").deleteRow(i);
