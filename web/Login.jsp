@@ -47,7 +47,7 @@
 
         <!------ Title ---------->
 
-        <title>Login</title>
+<!--        <title>Login</title>-->
 
         <!------ Style ---------->
 
