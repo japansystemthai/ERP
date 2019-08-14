@@ -92,7 +92,7 @@
         
         
 
-        out.println("Update Successfully...! Click Back link.");// after insert record successfully message
+        out.println("Update Successfully...!");// after insert record successfully message
 
     } catch (Exception e) {
         out.println(e);

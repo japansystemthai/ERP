@@ -71,11 +71,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!------ Link ---------->
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
@@ -265,6 +262,7 @@
         <!------ Set&Check Session ---------->
 
         <%
+            //Session เป็นการดึงกันต่อๆมาเริ่มจากหน้า mainmenu
             String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
             String username = String.valueOf(session.getAttribute("username_en"));
@@ -308,7 +306,7 @@
                 <span class="styleloginname">
                     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                         <%
-                            out.print(username);
+                            out.print(username);//username ดึงจากที่สร้างไว้ด้านบน
                         %> </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#" class="dropdown-item" onclick="open_Account()">My Account</a></li>
@@ -357,14 +355,13 @@
                             <td></td>
                         </tr>
 
-
-
                         <tr><th style="padding-left:40px;">Customer Name English</th>
                             <td ><input class=" form-control" maxlength="50" type="text"  name="Cust_Name_EN" required=""/></td>
 
                             <td ><b>Customer Name</b></td>
                             <td><input class=" form-control" maxlength="50" type="text" name="Cust_Name" required=""/></td>
                         </tr>
+                        
                         <tr><th style="padding-left:40px;">Type</th>
                             <td>
                                 <select name="Type" required="" class="form-control" style="height:20%;">
@@ -405,8 +402,6 @@
                             <td><input class=" form-control" maxlength="20" type="text" name="Taxid" /></td>
                         </tr>
 
-
-
                         <tr><th style="padding-left:40px;">Street/Buiding</th>
                             <td><input class=" form-control" maxlength="50" type="text" name="Address" /></td>
                             <td><b>Room/Suite</b></td>
@@ -430,15 +425,18 @@
                             <td></td>
                             <td></td>
                         </tr>
-                        <tr><div class="form-submit">
-                            <td></td>
-                            <td>
-
-                                <button class="btn btn-primary" id="submit" name="Save" type="submit" value="Save">Save</button>
-                                <button class="btn btn-danger" id="cancel" name="Cancel" type="button" onclick="window.location.href = 'Customer_Master.jsp';">Cancel</button>
-                            </td>
+                        
+                        <tr>
+                            <div class="form-submit">
+                                <td></td>
+                                <td>
+                                    <button class="btn btn-primary" id="submit" name="Save" type="submit" value="Save">Save</button>
+                                    <button class="btn btn-danger" id="cancel" name="Cancel" type="button" onclick="window.location.href = 'Customer_Master.jsp';">Cancel</button>
+                                </td>
                         </div>
+                        
                         </tr>
+                        
                     </table>
 
                 </form>
