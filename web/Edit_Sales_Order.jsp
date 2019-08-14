@@ -802,7 +802,9 @@
                             <% count++;
                                     }
                                 }%>
+                        <!-- number of count from database-->         
                         <input  name="countPro" id="countPro" value="<%=countPro%>" hidden>
+                        <!-- number of count when click add or delete row-->
                         <input  name="save_counter" id="save_counter" value="<%= count%>" hidden>
                         </tbody>
 
@@ -855,11 +857,13 @@
                 </form>
 
                 <script type="text/javascript">
+                    //Open popup for select product
                     var popup;
                     function SelectProduct(line) {
                         popup = window.open("form_select_product.jsp?line=" + line, "Popup", "width=800,height=400");
                         popup.focus();
                     }
+                    //Open popup for select description
                     function SelectDes(line) {
                         var des = document.getElementById("description" + line).value;
                         var desR1 = des.replace(/%/g, "%25").replace(/&/g, "%26");
@@ -868,6 +872,7 @@
                         popup = window.open("Description.jsp?line=" + line + "&des=" + desR2, "Popup", "width=800,height=600");
                         popup.focus();
                     }
+                    //Alert when no product data and click Save
                     function alertconfirm() {
                         var count = parseInt(document.getElementById("save_counter").value);
                         for (var i = 1; i <= count; i++) {
@@ -880,13 +885,13 @@
                         }
                         return true;
                     }
-           function del_line(r){
+                    //Delete row table_price
+                    function del_line(r){
                         var count = parseInt(document.getElementById("save_counter").value);
                         var i = r.parentNode.parentNode.rowIndex;
                         document.getElementById("Table_price").deleteRow(i);
                         var round = count - i;
                         for(var x = 1;x <= round;x++){
-//                            var countnumber = (i+x)-1;
                             var countnumber = i+x;
                             
                             document.getElementById("line"+countnumber).setAttribute("name", "line"+(countnumber-1));
@@ -1145,7 +1150,7 @@
         <script>
             function mydrop1() {
                 var x = document.getElementById("drop1");
-                if (x.className.indexOf("w3-show") == -1) {
+                if (x.className.indexOf("w3-show") === -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -1156,7 +1161,7 @@
             }
             function mydrop2() {
                 var y = document.getElementById("drop2");
-                if (y.className.indexOf("w3-show") == -1) {
+                if (y.className.indexOf("w3-show") === -1) {
                     y.className += " w3-show";
                     y.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -1171,37 +1176,6 @@
 
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
-            }
-            function myFunction1() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[2];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-
-            function deletet(cid) {
-
-
-                var r = confirm("Are you sure you want to delete it?");
-                if (r === true) {
-                    document.location.href = "Del.jsp?CusID=" + cid;
-
-                } else {
-                    document.location.href = "Customer_Master.jsp";
-                }
-
             }
             function goBack() {
                 window.history.back();

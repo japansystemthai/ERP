@@ -71,7 +71,7 @@
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
 
-
+        <!-- title name -->
         <title>Edit Product</title>
 
         <style>
@@ -113,23 +113,6 @@
                 border-top: none;
                 float: left;
             }
-            /*@media screen and (max-width: 790px) {
-              .sidebar {
-                display: none;
-              }
-              .styleloginname{
-                display: none;
-              }
-              .mainpage{
-                  margin-right: 15%;
-                  width: 100%;
-                  float: left;
-              }
-              #myTable{
-                  width: 100%;
-            
-              }
-            }*/
 
             .webname{
                 font-size: 22px;
@@ -471,7 +454,7 @@
 
 
 
-
+        <!------ Footer ---------->
 
         <div class="footer">
             <p align="center">2019 @Japan System(Thailand) Co.,Ltd.</p>
@@ -509,16 +492,6 @@
                 document.getElementById("mySidebar").style.display = "none";
             }
 
-            function deletet(cid) {
-                var r = confirm("Are you sure you want to delete it?");
-                if (r === true) {
-                    document.location.href = "Del.jsp?CusID=" + cid;
-
-                } else {
-                    document.location.href = "Customer_Master.jsp";
-                }
-
-            }
             function goBack() {
                 window.history.back();
             }

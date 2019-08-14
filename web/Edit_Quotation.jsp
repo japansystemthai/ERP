@@ -634,6 +634,7 @@
                         </tr>
                         <script>
                             function setUntill_Date() {
+                                //get date and plus 30 day
                                 var q_days = document.getElementById("quote_date").valueAsDate;
                                 var u_date = new Date();
                                 u_date.setDate(q_days.getDate() + 30);
@@ -665,8 +666,6 @@
                             <input type="hidden" name="cust_name_en">
                             
                         </tr>
-
-
 
                         <tr><th>Contact</th>
                             <td><input class=" form-control" maxlength="30" type="text" name="contact" value="<%=qt_contact%>"/></td>
@@ -794,7 +793,9 @@
                             <% count++ ;
                                 } 
                             }%>
+                        <!-- number of count from database-->    
                         <input id="countPro" name="countPro" value="<%=countPro%>" hidden>
+                        <!-- number of count when click add or delete row-->
                         <input id="save_counter" name="save_counter" value="<%= count %>" hidden>
                         </tbody>
 
@@ -845,11 +846,13 @@
                 </form>
 
                 <script type="text/javascript">
+                    //Open popup for select product
                     var popup;
                     function SelectProduct(line) {
                         popup = window.open("form_select_product.jsp?line="+line, "Popup", "width=800,height=400");
                         popup.focus();
                     }
+                    //Open popup for select description
                     function SelectDes(line) {
                         var des = document.getElementById("description"+line).value;
                         var desR1 = des.replace(/%/g,"%25").replace(/&/g,"%26");
@@ -858,6 +861,7 @@
                         popup = window.open("Description.jsp?line="+line+"&des="+desR2, "Popup", "width=800,height=600");
                         popup.focus();
                     }
+                    //Alert when no product data and click Save
                     function alertconfirm(){
                         var count = parseInt(document.getElementById("save_counter").value);
                         for(var i = 1 ; i<=count ;i++){ 
@@ -870,13 +874,13 @@
                         }
                         return true;
                     }
+                    //Delete row table_price
                     function del_line(r){
                         var count = parseInt(document.getElementById("save_counter").value);
                         var i = r.parentNode.parentNode.rowIndex;
                         document.getElementById("Table_price").deleteRow(i);
                         var round = count - i;
                         for(var x = 1;x <= round;x++){
-//                            var countnumber = (i+x)-1;
                             var countnumber = i+x;
                             
                             document.getElementById("line"+countnumber).setAttribute("name", "line"+(countnumber-1));

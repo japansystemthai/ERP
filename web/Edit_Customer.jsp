@@ -258,10 +258,6 @@
                 display: none;
             }
 
-
-
-
-
         </style>
 
     </head>
@@ -526,12 +522,6 @@
                                     %><option value="9">Non-Profit</option><%
                                         }
                                     %>
-
-
-
-
-
-
                                 </select>
 
                             </td>
