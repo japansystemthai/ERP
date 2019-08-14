@@ -20,7 +20,7 @@ try
         response.setCharacterEncoding("UTF-8");
         
         String driverName = "com.mysql.jdbc.Driver";
-	String connectionUrl = "jdbc:mysql://localhost:3306/";
+//	String connectionUrl = "jdbc:mysql://localhost:3306/";
 	String dbName = "erp1";
 	String userId = "root";
 	String password = "1234";
@@ -32,10 +32,10 @@ try
 	}
         Connection connect = null;
 	Statement s = null;
-	ResultSet resultSet = null;
+//	ResultSet resultSet = null;
         
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=yes&characterEncoding=UTF-8",userId, password);
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=yes&characterEncoding=UTF-8",userId, password);//Connect Database
 
 	s = connect.createStatement();
 
@@ -44,20 +44,20 @@ try
   
   cus_code = request.getParameter("Cust_Code"); 
   cus_name_en = request.getParameter("Cust_Name_EN");  
-  name = request.getParameter("Cust_Name"); //txt_owner
-  type = request.getParameter("Type"); //txt_owner
-  indust = request.getParameter("Indust"); //txt_owner
-  tel = request.getParameter("phone_number"); //txt_owner
-  email = request.getParameter("e_mail"); //txt_owner
-  website = request.getParameter("Website"); //txt_owner
-  st = request.getParameter("Address"); //txt_owner
-  su = request.getParameter("Suite"); //txt_owner
-  city = request.getParameter("City"); //txt_owner
-  region = request.getParameter("Region"); //txt_owner
-  stat = request.getParameter("Stat"); //txt_owner
-  zip = request.getParameter("Zip"); //txt_owner
-  country = request.getParameter("Country"); //txt_owner
-  taxid = request.getParameter("Taxid"); //txt_owner
+  name = request.getParameter("Cust_Name");
+  type = request.getParameter("Type"); 
+  indust = request.getParameter("Indust"); 
+  tel = request.getParameter("phone_number"); 
+  email = request.getParameter("e_mail"); 
+  website = request.getParameter("Website"); 
+  st = request.getParameter("Address"); 
+  su = request.getParameter("Suite"); 
+  city = request.getParameter("City"); 
+  region = request.getParameter("Region"); 
+  stat = request.getParameter("Stat"); 
+  zip = request.getParameter("Zip"); 
+  country = request.getParameter("Country"); 
+  taxid = request.getParameter("Taxid"); 
   
  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
  LocalDate localDate = LocalDate.now();
@@ -98,7 +98,7 @@ try
   pstmt.executeUpdate(); //execute query
   
   connect.close();  //close connection 
-  out.println("Insert Successfully...! Click Back link.");// after insert record successfully message
+  out.println("Insert Successfully...!");// after insert record successfully message
   
  
  
