@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <!-- Function can't click back -->
          <script type="text/javascript">
             function noBack(){
                 window.history.forward();
@@ -210,31 +210,7 @@
 
         </style>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script>
-            function addCommas(nStr)
-            {
-                nStr += '';
-                x = nStr.split('.');
-                x1 = x[0];
-                x2 = x.length > 1 ? '.' + x[1] : '';
-                var rgx = /(\d+)(\d{3})/;
-                while (rgx.test(x1)) {
-                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-                }
-                return x1 + x2;
-            }
-
-            function chkNum(ele) {
-//                                var num = parseFloat(ele.value);
-//                                ele.value = addCommas(num.toFixed(2));
-                var num = parseFloat(ele.value.replace(/,/g, ''));
-                if (isNaN(num)) {
-                    ele.value = "0.00";
-                } else {
-                    ele.value = addCommas(num.toFixed(2));
-                }
-            }
-        </script>
+        
     </head>
 
 
@@ -409,7 +385,9 @@
                         <tr><th style="padding-left:40px;">Specification</th><td><input class="form-control" type="text" name="spec" value="<%=spec%>" maxlength="50"/></td></tr>
                         <th style="padding-left:40px;">Customer ID</th>
                         <td colspan="2">
+                            
                             <script>
+                                //set default page
                                 $(document).ready(function () {
                                     $("#cus_id").on('change', function () {
                                         var id = this.options[this.selectedIndex].id;
@@ -503,7 +481,7 @@
         <script>
             function mydrop1() {
                 var x = document.getElementById("drop1");
-                if (x.className.indexOf("w3-show") == -1) {
+                if (x.className.indexOf("w3-show") === -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -514,7 +492,7 @@
             }
             function mydrop2() {
                 var y = document.getElementById("drop2");
-                if (y.className.indexOf("w3-show") == -1) {
+                if (y.className.indexOf("w3-show") === -1) {
                     y.className += " w3-show";
                     y.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -530,28 +508,8 @@
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
             }
-            function myFunction1() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[2];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
 
             function deletet(cid) {
-
-
                 var r = confirm("Are you sure you want to delete it?");
                 if (r === true) {
                     document.location.href = "Del.jsp?CusID=" + cid;
@@ -563,6 +521,30 @@
             }
             function goBack() {
                 window.history.back();
+            }
+            //code for number add comma and check number or not
+            function addCommas(nStr)
+            {
+                nStr += '';
+                x = nStr.split('.');
+                x1 = x[0];
+                x2 = x.length > 1 ? '.' + x[1] : '';
+                var rgx = /(\d+)(\d{3})/;
+                while (rgx.test(x1)) {
+                    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                }
+                return x1 + x2;
+            }
+
+            function chkNum(ele) {
+//              var num = parseFloat(ele.value);
+//              ele.value = addCommas(num.toFixed(2));
+                var num = parseFloat(ele.value.replace(/,/g, ''));
+                if (isNaN(num)) {
+                    ele.value = "0.00";
+                } else {
+                    ele.value = addCommas(num.toFixed(2));
+                }
             }
         </script>
         <!-- JS -->

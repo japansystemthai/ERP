@@ -14,6 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Function can't click back -->
          <script type="text/javascript">
             function noBack(){
                 window.history.forward();

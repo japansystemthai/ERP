@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <!-- Function can't click back -->
          <script type="text/javascript">
             function noBack(){
                 window.history.forward();
@@ -66,7 +66,7 @@
         <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
 
-
+        <!-- Title name -->
         <title>Create Sales Order</title>
 
         <style>
@@ -451,7 +451,8 @@
         %>
 
         <script>
-                     $(document).ready(function () {
+            $(document).ready(function () {
+                //add row in Table_price
                 $("#addrow").on("click", function () {
                     var newRow = $("<tr>");
                     var cols = "";
@@ -474,11 +475,8 @@
                     $("#Table_price").append(newRow);         
                     document.getElementById("save_counter").value = parseInt(counter);
                 });
-                
-
-
             });
-
+            // set default page
             $(document).ready(function () {
                 var cust_name = $('#customer_id').find(":selected").attr("cust_name");
                 document.getElementById("readcust").innerHTML = cust_name;
@@ -511,7 +509,7 @@
                 document.getElementById("cur_sym5").innerHTML = cur_sym;
             });
 
-
+            //set page when onchange
             $(document).ready(function () {
 
                 $("#customer_id").on('change', function () {

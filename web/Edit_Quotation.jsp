@@ -14,7 +14,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
+        <!-- Function can't click back -->
          <script type="text/javascript">
             function noBack(){
                 window.history.forward();
@@ -451,6 +451,7 @@
         
         <script>
             $(document).ready(function () {
+                //add row in Table_price
                 $("#addrow").on("click", function () {
                     var newRow = $("<tr>");
                     var cols = "";
@@ -467,17 +468,12 @@
                     cols += '<td><input type="text" class="form-control" id="discount_per' + counter + '" name="discount_per' + counter + '" onchange="discount_changeper('+counter+')" style="text-align: right;" value="0" /></td>';
                     cols += '<td><input type="text" class="form-control" id="discountamt' + counter + '" name="discountamt' + counter + '" onchange="discount_changeamt('+counter+')" style="text-align: right;" value="0.00" /></td>';
                     cols += '<td><input type="text" class="form-control" id="amount_after' + counter + '" name="amount_after' + counter + '" style="text-align: right;" value="0.00" readonly /></td>';
-                    
-                    
                     newRow.append(cols);
                     $("#Table_price").append(newRow);         
                     document.getElementById("save_counter").value = parseInt(counter);
                 });
-                
-
-
             });
-            
+            //set default page
             $(document).ready(function () {
                 var cust_name = $('#customer_id').find(":selected").attr("cust_name");
                 document.getElementById("readcust").innerHTML = cust_name;
@@ -510,7 +506,7 @@
                 document.getElementById("cur_sym5").innerHTML = cur_sym;
             });
 
-
+            //set page when change
             $(document).ready(function () {
 
                 $("#customer_id").on('change', function () {
@@ -566,6 +562,7 @@
                 </div>
             </div>
             <script>
+                //close and open navbar 
                 function closeNav() {
                     document.getElementById("sideB").style.width = "0";
                     document.getElementById("main").style.marginLeft = "0";
@@ -723,9 +720,9 @@
                             String sqlcountPro = "SELECT count(*) FROM qt_detail where qt_id ="+qt_id;
                             resultcountPro = statementcountPro.executeQuery(sqlcountPro);
                             String item_name,item_no, des,deshead;
-                                    int line_no, qty, dis_per;
-                                    float unit_price, amt, dis_amt, dis_a_amt;
-                                    String unit_price_d, amt_d, dis_amt_d, dis_a_amt_d,qtd_id="";
+                            int line_no, qty, dis_per;
+                            float unit_price, amt, dis_amt, dis_a_amt;
+                            String unit_price_d, amt_d, dis_amt_d, dis_a_amt_d,qtd_id="";
                         %>
                        
                     </table>
@@ -770,8 +767,6 @@
                                         dis_amt = resultselectPro.getFloat("QTD_DISC_AMOUNT");
                                         dis_a_amt = resultselectPro.getFloat("QTD_AMT_A_DISC");
 
-                                       
-                                        
                                         unit_price_d = decimalFormat.format(unit_price);
                                         amt_d = decimalFormat.format(amt);
                                         dis_amt_d = decimalFormat.format(dis_amt);
@@ -962,7 +957,7 @@
                         }
                         return x1 + x2;
                     }
-
+                   //change input when put value in quantity,unitprice
                    function changeinput(ele) {
                                 var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g,""));                                
                                 var quantity = parseInt(document.getElementById("quantity"+ele).value);
@@ -1046,7 +1041,7 @@
                             
                     }
                     
-                    
+                    //change input when put value in discountamt
                     function  discount_changeamt(ele) {
                                 var discount_per = parseInt(document.getElementById("discount_per" + ele).value);
                                 var discountamt = parseFloat(document.getElementById("discountamt" + ele).value.replace(/,/g,""));
@@ -1076,6 +1071,7 @@
                                 document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                                 document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
+                    //change input when put value in discount_changeper
                     function  discount_changeper(ele) {
                                 var quantity = parseInt(document.getElementById("quantity" + ele).value);
                                 var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g,""));
@@ -1105,7 +1101,7 @@
                                 document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                                 document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
-                   
+                    //change input when change tax(currency)
                     function  tax() {
                         var qt_tax = parseFloat(document.getElementById("qt_tax").value.replace(/,/g, ""));
                         var subtotal = parseFloat(document.getElementById("qt_subtotal").value.replace(/,/g, ""));
@@ -1166,37 +1162,6 @@
 
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
-            }
-            function myFunction1() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[2];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-
-            function deletet(cid) {
-
-
-                var r = confirm("Are you sure you want to delete it?");
-                if (r === true) {
-                    document.location.href = "Del.jsp?CusID=" + cid;
-
-                } else {
-                    document.location.href = "Customer_Master.jsp";
-                }
-
             }
             function goBack() {
                 window.history.back();
