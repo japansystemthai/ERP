@@ -15,15 +15,15 @@
 <%
 try
 { 
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");//
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         
-        String driverName = "com.mysql.jdbc.Driver";
+        String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries
 //	String connectionUrl = "jdbc:mysql://localhost:3306/";
-	String dbName = "erp1";
-	String userId = "root";
-	String password = "1234";
+	String dbName = "erp1";//DataBase Name
+	String userId = "root";//Username
+	String password = "1234";//Password
 	
 	try {
 		Class.forName(driverName);
@@ -31,17 +31,18 @@ try
 		e.printStackTrace();
 	}
         Connection connect = null;
-	Statement s = null;
+//	Statement s = null;
 //	ResultSet resultSet = null;
         
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
         connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=yes&characterEncoding=UTF-8",userId, password);//Connect Database
 
-	s = connect.createStatement();
+//	s = connect.createStatement();
 
  
   String cus_code,cus_name_en,name,type,indust,tel,email,website,st,su,city,region,stat,zip,country,taxid,date,time,ed_name;
   
+  //getParameter from Create Customer Page
   cus_code = request.getParameter("Cust_Code"); 
   cus_name_en = request.getParameter("Cust_Name_EN");  
   name = request.getParameter("Cust_Name");
@@ -59,15 +60,15 @@ try
   country = request.getParameter("Country"); 
   taxid = request.getParameter("Taxid"); 
   
- DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+ DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format
  LocalDate localDate = LocalDate.now();
  date = dtf.format(localDate);
 
  Calendar cal = Calendar.getInstance();
- SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+ SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");//set Time Format
  time = sdf.format(cal.getTime() );
  
- ed_name = String.valueOf(session.getAttribute("username_en"));
+ ed_name = String.valueOf(session.getAttribute("username_en"));//User who made a change
 
   
   PreparedStatement pstmt=null; //create statement 
@@ -109,6 +110,6 @@ catch(Exception e)
 }
 
 %>
-       <meta http-equiv= refresh content= 1;URL=Customer_Master.jsp>
+<meta http-equiv= refresh content= 1;URL=Customer_Master.jsp> <!-- Return to Customer Master Page -->
 
 

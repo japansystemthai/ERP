@@ -21,7 +21,7 @@ try
         response.setCharacterEncoding("UTF-8");
         
         String driverName = "com.mysql.jdbc.Driver";
-	String connectionUrl = "jdbc:mysql://localhost:3306/";
+//	String connectionUrl = "jdbc:mysql://localhost:3306/";
 	String dbName = "erp1";
 	String userId = "root";
 	String password = "1234";
@@ -33,14 +33,14 @@ try
 		e.printStackTrace();
 	}
         Connection connect = null;
-	Statement s = null;
-	ResultSet resultSet = null;
+//	Statement s = null;
+//	ResultSet resultSet = null;
         
         
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
         connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=yes&characterEncoding=UTF-8",userId, password);
         
-	s = connect.createStatement();
+//	s = connect.createStatement();
 
         Statement statementC = null;
         ResultSet resultC = null;
