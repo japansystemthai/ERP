@@ -74,7 +74,7 @@ try
   PreparedStatement pstmt=null; //create statement 
   
   pstmt=connect.prepareStatement("INSERT INTO erp1.customer(CUST_CD,CUST_NAME_EN,CUST_NAME,TYPE,INDUST,TEL,EMAIL,WEBSITE,ADDR_ST,ADDR_SU,ADDR_CITY,ADDR_REG,ADDR_STAT,ADDR_ZIP,ADDR_COUNT,TAX_ID,REG_DATE,REG_TIME,ED_NAME)VALUES"
-          + "                    (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
+          + "               (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
   
   pstmt.setString(1,cus_code); 
   pstmt.setString(2,cus_name_en); 
