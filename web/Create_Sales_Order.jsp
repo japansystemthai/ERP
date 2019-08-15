@@ -54,7 +54,7 @@
         <!-- นำเข้า  Javascript  จาก   dataTables -->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-
+            <!-- Function can't click back -->
                 <script type="text/javascript">
             function noBack(){
                 window.history.forward();
@@ -72,6 +72,7 @@
             };
         </script>
         
+        <!------ Title ---------->
         <title>Create Sales Order</title>
 
         <style>
@@ -281,6 +282,7 @@
 
 
     <body>
+        <!------ Set&Check Session ---------->
         <%
             String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
@@ -386,6 +388,7 @@
 
         %>
         <script>
+            //add row in Table_price
             $(document).ready(function () {
                 var counter = 1;
                 $("#addrow").on("click", function () {
@@ -417,26 +420,6 @@
                     
                     
                 });
-                
-                $("#delrow").on("click", function () {
-                    if (counter > 1) {
-                        $("#Table_price tr:last").remove();
-                           counter -= 1;
-                           document.getElementById("save_counter").value = counter;
-                    } else {
-                        alert("ต้องมีรายการข้อมูลอย่างน้อย 1 รายการ");
-                    }
-
-                });
-
-                    
-
-//                $("#Table_price").on("click", ".ibtnDel", function (event) {
-//                    
-//                    $(this).closest("tr").remove();       
-//                    counter -= 1;
-//                });
-
 
             });
 
@@ -613,10 +596,12 @@
         </div>
         <script type="text/javascript">
                     var popup;
+                    //Open popup to select quotation
                     function SelectQ() {
                         popup = window.open("form_select_quotation.jsp", "Popup", "width=900,height=550");
                         popup.focus();
                     }
+                    //Alert when no product data and click Save
                     function alertconfirm(){
                         var quotation_no = document.getElementById("Quotation_no").value;
                         if(quotation_no === ""){
@@ -638,7 +623,7 @@
         <script>
             function mydrop1() {
                 var x = document.getElementById("drop1");
-                if (x.className.indexOf("w3-show") == -1) {
+                if (x.className.indexOf("w3-show") === -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -664,37 +649,6 @@
 
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
-            }
-            function myFunction1() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[2];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-
-            function deletet(cid) {
-
-
-                var r = confirm("Are you sure you want to delete it?");
-                if (r === true) {
-                    document.location.href = "Del.jsp?CusID=" + cid;
-
-                } else {
-                    document.location.href = "Customer_Master.jsp";
-                }
-
             }
             function goBack() {
                 window.history.back();

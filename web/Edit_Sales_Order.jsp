@@ -972,7 +972,7 @@
                         }
                         return x1 + x2;
                     }
-
+                    //change input when put value in quantity,unitprice
                     function changeinput(ele) {
                         var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g, ""));
                         var quantity = parseInt(document.getElementById("quantity" + ele).value);
@@ -1056,7 +1056,7 @@
 
                     }
 
-
+                    //change input when put value in discountamt
                     function  discount_changeamt(ele) {
                         var discount_per = parseInt(document.getElementById("discount_per" + ele).value);
                         var discountamt = parseFloat(document.getElementById("discountamt" + ele).value.replace(/,/g, ""));
@@ -1086,6 +1086,7 @@
                         document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                         document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
+                    //change input when put value in discount_changeper
                     function  discount_changeper(ele) {
                         var quantity = parseInt(document.getElementById("quantity" + ele).value);
                         var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g, ""));
@@ -1115,7 +1116,7 @@
                         document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                         document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
-
+                    //change input when change tax(currency)
                     function  tax() {
                         var qt_tax = parseFloat(document.getElementById("qt_tax").value.replace(/,/g, ""));
                         var subtotal = parseFloat(document.getElementById("qt_subtotal").value.replace(/,/g, ""));
@@ -1141,7 +1142,7 @@
 
 
 
-
+<!------ Footer ---------->
 
         <div class="footer">
             <p align="center">2019 @Japan System(Thailand) Co.,Ltd.</p>

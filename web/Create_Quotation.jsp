@@ -54,7 +54,7 @@
         <!-- นำเข้า  Javascript  จาก   dataTables -->
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-
+       <!-- Function can't click back -->
        <script type="text/javascript">
             function noBack(){
                 window.history.forward();
@@ -262,6 +262,7 @@
 
 
     <body>
+        <!------ Set&Check Session ---------->
         <%
             String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
@@ -377,6 +378,7 @@
         %>
 
         <script>
+            //add row in Table_price
             $(document).ready(function () {
                 $("#addrow").on("click", function () {
                     var newRow = $("<tr>");
@@ -561,13 +563,6 @@
                 <h2 style=" text-align: left ;padding-left: 5px">Quotation Entry</h2>
                 <form  method="post" action="Insert_Quotation.jsp" class="normal_form" onsubmit="return alertconfirm();">
                     <table class="myTable" align="center">
-                        <!--                        <tr><th style="padding-left:40px;">ID</th>
-                                                    <td><input class=" form-control" maxlength="20" type="text" name="ID" required="" title="Please Enter ID" /></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                </tr>-->
-
-
 
                         <tr><th>Quotation No</th>
                             <td style="width: 35%;"><input class=" form-control" maxlength="50" type="text"  name="Quotation_no" required/></td>
@@ -743,11 +738,13 @@
 
                 </form>
                 <script type="text/javascript">
+                    //Open popup for select product
                     var popup;
                     function SelectProduct(line) {
                         popup = window.open("form_select_product.jsp?line="+line, "Popup", "width=800,height=500");
                         popup.focus();
                     }
+                    //Open popup for select description
                     function SelectDes(line) {
                         var des = document.getElementById("description"+line).value;
                         var desR1 = des.replace(/%/g,"%25").replace(/&/g,"%26");
@@ -756,6 +753,7 @@
                         popup = window.open("Description.jsp?line="+line+"&des="+desR2, "Popup", "width=800,height=600");
                         popup.focus();
                     }
+                    //Alert when no product data and click Save
                     function alertconfirm(){
                         var count = parseInt(document.getElementById("save_counter").value);
                         for(var i = 1 ; i<=count ;i++){ 
@@ -768,7 +766,7 @@
                         }
                         return true;
                     }
-                    
+                    //Delete row table_price
                     function del_line(r){
                         var count = parseInt(document.getElementById("save_counter").value);
                         var i = r.parentNode.parentNode.rowIndex;
@@ -854,7 +852,7 @@
                         }
                         return x1 + x2;
                     }
-
+                    //change input when put value in quantity,unitprice
                     function changeinput(ele) {
                                 var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g,""));                                
                                 var quantity = parseInt(document.getElementById("quantity"+ele).value);
@@ -938,7 +936,7 @@
                             
                     }
                     
-                    
+                    //change input when put value in discountamt
                     function  discount_changeamt(ele) {
                                 var discount_per = parseInt(document.getElementById("discount_per" + ele).value);
                                 var discountamt = parseFloat(document.getElementById("discountamt" + ele).value.replace(/,/g,""));
@@ -972,6 +970,7 @@
                                 document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                                 document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
+                    //change input when put value in discount_changeper
                     function  discount_changeper(ele) {
                                 var quantity = parseInt(document.getElementById("quantity" + ele).value);
                                 var unit_price = parseFloat(document.getElementById("unit_price" + ele).value.replace(/,/g,""));
@@ -1001,7 +1000,7 @@
                                 document.getElementById("qt_vat").value = addCommas(vat.toFixed(2));
                                 document.getElementById("qt_amt").value = addCommas(totalamount.toFixed(2));
                     }
-                   
+                   //change input when change tax(currency)
                     function  tax() {
                         var qt_tax = parseFloat(document.getElementById("qt_tax").value.replace(/,/g, ""));
                         var subtotal = parseFloat(document.getElementById("qt_subtotal").value.replace(/,/g, ""));
@@ -1025,10 +1024,7 @@
             </div>
         </div>
 
-
-
-
-
+<!------ Footer ---------->
         <div class="footer">
             <p align="center">2019 @Japan System(Thailand) Co.,Ltd.</p>
         </div>
@@ -1037,7 +1033,7 @@
         <script>
             function mydrop1() {
                 var x = document.getElementById("drop1");
-                if (x.className.indexOf("w3-show") == -1) {
+                if (x.className.indexOf("w3-show") === -1) {
                     x.className += " w3-show";
                     x.previousElementSibling.className += " w3-light-blue";
                 } else {
@@ -1064,37 +1060,7 @@
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
             }
-            function myFunction1() {
-                var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
-                filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[2];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
-                        }
-                    }
-                }
-            }
-
-            function deletet(cid) {
-
-
-                var r = confirm("Are you sure you want to delete it?");
-                if (r === true) {
-                    document.location.href = "Del.jsp?CusID=" + cid;
-
-                } else {
-                    document.location.href = "Customer_Master.jsp";
-                }
-
-            }
+            
             function goBack() {
                 window.history.back();
             }
