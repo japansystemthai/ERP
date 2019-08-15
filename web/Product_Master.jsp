@@ -61,7 +61,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <script src="js/main.js" type="text/javascript"></script>
 
-
+        <!-- Title name -->
         <title>Product Master</title> 
         <style>
             .image {
@@ -301,6 +301,7 @@
 
     </head> 
     <body> 
+        <!------ Set&Check Session ---------->
         <%  String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
             String username = String.valueOf(session.getAttribute("username_en"));
@@ -503,23 +504,6 @@
         </div>
 
 
-
-
-
-
-        <script>
-//
-//            $(document).ready(function () {
-//                $("#Input").on("keyup", function () {
-//                    var value = $(this).val().toLowerCase();
-//                    $("#mTable tr").filter(function () {
-//                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//                    });
-//                });
-//            });
-        </script>
-
-
         <script>
             function mydrop1() {
                 var x = document.getElementById("drop1");
@@ -575,41 +559,11 @@
             }
         </script>
         <script>
-
-//            function myFunction1() {
-//                var input, filter, table, tr, td, i, txtValue;
-//                input = document.getElementById("myInput");
-//                filter = input.value.toUpperCase();
-//                table = document.getElementById("myTable");
-//                tr = table.getElementsByTagName("tr");
-//                for (i = 0; i < tr.length; i++) {
-//                    td = tr[i].getElementsByTagName("td")[2];
-//                    if (td) {
-//                        txtValue = td.textContent || td.innerText;
-//                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-//                            tr[i].style.display = "";
-//                        } else {
-//                            tr[i].style.display = "none";
-//                        }
-//                    }
-//                }
-//            }
-
-        </script>
-        <script>
-             function create() {
-                
+            function create() {
                     document.location.href = "Create_Product.jsp";
-
-                
-
             }
              function edit(pid) {
-                
                     document.location.href = "Edit_Product.jsp?ProID=" + pid;
-
-                
-
             }
             function deletet(pid) {
                 var r = confirm("Are you sure you want to delete it?");

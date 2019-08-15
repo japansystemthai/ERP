@@ -150,15 +150,16 @@
 //                    alert(msg);
 //                    window.location.href = "Insert_Product_Quotation.jsp?selectPro=" + msg;
 //                    document.getElementById('sel_pro').value=msg.toString();
-                    var countinpage = 1;
+//                   var countinpage = 1;
                     var line = document.getElementById("line").value;
 //                    for(i=1;i<=counter;i++){
                         if (window.opener !== null && !window.opener.closed) {
+                            //send value from popup to main page
                             var txtName = window.opener.document.getElementById("selectPro"+line);
                             var txtName2 = window.opener.document.getElementById("selectPro_name"+line);
                             txtName.value = msgid.toString();
                             txtName2.value = msgname.toString();
-                            countinpage++;
+//                            countinpage++;
                         }
 //                    }
                     window.close();

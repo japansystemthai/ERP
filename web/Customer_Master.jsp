@@ -76,18 +76,10 @@
             }
 
             function create() {
-
                 document.location.href = "Create_Customer.jsp";
-
-
-
             }
             function edit(cid) {
-
                 document.location.href = "Edit_Customer.jsp?CusID=" + cid;
-
-
-
             }
             function deletet(cid) {
                 var r = confirm("Are you sure you want to delete it?");
@@ -567,7 +559,7 @@
                                 </div>
 
                             </td>
-                            <td style=" text-align: left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <td style=" text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <%=resultSet.getString("CUST_CD")%>
                             </td>
                             <td><%=resultSet.getString("CUST_NAME_EN")%></td>
