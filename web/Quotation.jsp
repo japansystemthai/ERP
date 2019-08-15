@@ -14,12 +14,11 @@
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <%
-    String id = request.getParameter("ITEM_NO");
-    String driverName = "com.mysql.jdbc.Driver";
+    String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
     String connectionUrl = "jdbc:mysql://localhost:3306/";
-    String dbName = "erp1";
-    String userId = "root";
-    String password = "1234";
+    String dbName = "erp1";//DataBase Name.
+    String userId = "root";//Username.
+    String password = "1234";//Password.
 
     try {
         Class.forName(driverName);
@@ -27,9 +26,9 @@
         e.printStackTrace();
     }
 
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
+     Connection connection = null;//create connection.
+     Statement statement = null;//Used for storing sql commands.
+     ResultSet resultSet = null;//keep data that has been processed.
 
 %> 
 <!DOCTYPE html>
@@ -38,28 +37,20 @@
         <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"><!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        -->        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><!--
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        
-        -->        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet"><!--
-        
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        -->        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"><!--
-        -->        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><!--
-        -->        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma"><!--
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
         <%-- Dropdown --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8"><!--
-        -->        <link href="css/style5.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+        <link href="css/style5.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script><!--
-        -->        <script src="js/main.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="js/main.js" type="text/javascript"></script>
 
 
         <title>Quotation</title> 
@@ -303,7 +294,8 @@
 
     </head> 
     <body> 
-        <% String User = String.valueOf(session.getAttribute("sUser"));
+        <% //Create and Set session.
+            String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
             String username = String.valueOf(session.getAttribute("username_en"));
             session.setAttribute("username", username);
@@ -316,7 +308,7 @@
         %>
 
 
-
+        <!--NavBar-->
         <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
             <a href="javascript:void(0)" onclick="w3_close()"
                class="w3-bar-item w3-button">Close Menu</a>
@@ -337,6 +329,9 @@
 
             </ui>
         </nav>
+        
+        
+        
         <div class=" w3-top" style="max-width: 100%; width: 100%; ">
             <div class="navbars">
                 <span class="w3-button w3-padding-16 w3-left" onclick="w3_open()" style=" margin: auto">☰</span>
@@ -404,15 +399,11 @@
                     try {
                         connection = DriverManager.getConnection(connectionUrl + dbName, userId, password);
                         statement = connection.createStatement();
-//                        String sql = "SELECT * FROM customer where FLG2 = 0";
-//                        String sql = "select * from qt_head";
                         String sql = "select * from erp1.qt_head "
                                 + "INNER JOIN `erp1`.`customer` customer ON qt_head.`QT_CUST_ID` = customer.`CUST_ID` "
                                 + "INNER JOIN `erp1`.`user_master` userm ON qt_head.`QT_USER_ID` = userm.`USER_ID`  "
                                 + "where qt_head.`FLG2` = 0;";
-
-//                        String sqluser = "select * from user_master";
-                        resultSet = statement.executeQuery(sql);
+                        resultSet = statement.executeQuery(sql);//sql view query. 
                 %>
                 <table class="table table-bordered" id="myTable">
 
