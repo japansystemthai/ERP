@@ -19,46 +19,43 @@
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String driverName = "com.mysql.jdbc.Driver";
-        String connectionUrl = "jdbc:mysql://localhost:3306/";
-        String dbName = "erp1";
-        String userId = "root";
-        String password = "1234";
+        String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
+//        String connectionUrl = "jdbc:mysql://localhost:3306/";
+        String dbName = "erp1";//DataBase Name.
+        String userId = "root";//Username.
+        String password = "1234";//Password.
 
         try {
             Class.forName(driverName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Connection connect = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connect = null;//create connection.
+        Statement statement = null;//Used for storing sql commands.
+        ResultSet resultSet = null;//keep data that has been processed.
 
-//        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);
-
-//        String item_no,item_eng,item_th,size,spec,cus_id,currency,standard_price,mt_unit_price,process_price,date,time;
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);//Connect Database.
+        
         String qt_id, qt_no, qt_cust_id, qtd_qt_id;
         String qt_contact, qt_cont_tel, qt_name, qt_stats, qt_date, qt_valid;
-        String qt_comp_tax, qt_crr_id;
-        String qt_cre_date, qt_cre_time, qt_flg1 = "", qt_exp_date, qt_user_id;
-        String qt_comm, qt_valid_term, qt_delivery_term, qt_payment_term, reg_date, reg_time, flg1 = "", upd_date, upd_time, flg2 = "";
+        String qt_crr_id;
+        String qt_cre_date, qt_cre_time, qt_exp_date, qt_user_id;
+        String qt_comm, qt_valid_term, qt_delivery_term, qt_payment_term, reg_date, reg_time;
 
         String date, time;
 
         float qt_amt, qt_amt_wotax, qt_discount, qt_subtotal, qt_vat;
         int counts = 0;
 
-        counts = Integer.parseInt(request.getParameter("save_counter"));
-//        counts = counts-1;
-        if (counts == 0) {%>
+        counts = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of product.
+        if (counts == 0) {//If there is no product. return to Create Quotation Page. %> 
 
-<script>alert('Please Enter Product');</script>
-<meta http-equiv= refresh content= 1;URL=Create_Quotation.jsp>
+            <script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
+            <meta http-equiv= refresh content= 1;URL=Create_Quotation.jsp>
 
 <%
     } else {
-
+        //getParameter from Create Quotation Page.
         qt_id = request.getParameter("ID");
         qt_no = request.getParameter("Quotation_no");
         qt_cust_id = request.getParameter("customer_id");
@@ -66,23 +63,21 @@
         qt_cont_tel = request.getParameter("contact_tel");
         qt_name = request.getParameter("subject");
         qt_stats = request.getParameter("status");
-        //no default of date and time when user not input
         qt_date = request.getParameter("date");
         qt_valid = request.getParameter("valid_until");
         qt_crr_id = request.getParameter("currency");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format because the information taken from create_customer page is type String.
+        LocalDate localDate = LocalDate.now();                            //but data type in database is date So the data must be converted from String to Date.
         date = dtf.format(localDate);
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        time = sdf.format(cal.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");//set Time Format because the information taken from create_customer page is type String.
+        time = sdf.format(cal.getTime());                       //but data type in database is time So the data must be converted from String to time.
         qt_cre_date = date;
         qt_cre_time = time;
-        qt_exp_date = dtf.format(LocalDate.parse(qt_date).plusDays(30));
-        //qt_exp_date = date;
+        qt_exp_date = dtf.format(LocalDate.parse(qt_date).plusDays(30));//qt_exp_date it special because it must plus 30 day from qt_date.
         qt_user_id = request.getParameter("sales");
         qt_comm = request.getParameter("comment");
-        qt_amt = Float.parseFloat(request.getParameter("qt_amt").replace(",", ""));
+        qt_amt = Float.parseFloat(request.getParameter("qt_amt").replace(",", ""));//replace "," with "" because in database type is float. float can't record ","(type int is the same).
         qt_amt_wotax = Float.parseFloat(request.getParameter("qt_amt_wotax").replace(",", ""));
         qt_discount = Float.parseFloat(request.getParameter("qt_discount").replace(",", ""));
         qt_subtotal = Float.parseFloat(request.getParameter("qt_subtotal").replace(",", ""));
@@ -92,17 +87,15 @@
         qt_payment_term = request.getParameter("payment_term");
         reg_date = date;
         reg_time = time;
-        upd_date = date;
-        upd_time = time;
 
-        PreparedStatement pstmt = null, pstmtd = null; //create statement 
+        PreparedStatement pstmt = null, pstmtd = null; //create statement. 
 
         pstmt = connect.prepareStatement("INSERT INTO erp1.qt_head(QT_ID,QT_NO,QT_CUST_ID,"
                 + "QT_CONTACT,QT_CONT_TEL,QT_NAME,QT_STATS,QT_DATE,QT_VALID,QT_CRR_ID,"
                 + "QT_CRE_DATE,"
                 + "QT_CRE_TIME,QT_EXP_DATE,QT_USER_ID,QT_COMM,QT_AMT,QT_AMT_WOTAX,QT_DISCOUNT,QT_SUBTOTAL,QT_VAT,"
                 + "QT_VALID_TERM,QT_DELIVERY_TERM,QT_PAYMENT_TERM,REG_DATE,REG_TIME)VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query.
 
         pstmt.setString(1, qt_id);
         pstmt.setString(2, qt_no);
@@ -129,32 +122,32 @@
         pstmt.setString(23, qt_payment_term);
         pstmt.setString(24, reg_date);
         pstmt.setString(25, reg_time);
-        pstmt.executeUpdate(); //execute query
+        pstmt.executeUpdate(); //execute query.
 
         pstmtd = connect.prepareStatement("INSERT INTO erp1.qt_detail(QT_ID,"
                 + "QTD_LINENO,QTD_ITEM_NO,QTD_DES_HEAD,QTD_DEST,QTD_UNIT_PRICE,QTD_QTY,QTD_AMT,QTD_DISC_PERCENT,QTD_DISC_AMOUNT,QTD_AMT_A_DISC,REG_DATE,REG_TIME)VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 12 parameter
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query.
 
         statement = connect.createStatement();
 //                        String sql = "SELECT * FROM customer where FLG2 = 0";
 //                        String sql = "select * from qt_head";
-        String sql = "SELECT QT_ID FROM erp1.qt_head ORDER BY QT_ID DESC LIMIT 0, 1;";
+        String sql = "SELECT QT_ID FROM erp1.qt_head ORDER BY QT_ID DESC LIMIT 0, 1;";//sql for selecting the latest QT_ID.
         resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {
+        while (resultSet.next()) {//while loop for selecting the latest QT_ID.
             qtd_qt_id = resultSet.getString("QT_ID");
 
 //                        String sqluser = "select * from user_master";
             String qtd_dest, qtd_item_no, qtd_des_head;
             int qt_qty, qtd_lineno, counter;
             float qt_dis_amt, qt_dis_per, qtd_amt, qtd_amt_a_dis, qtd_unit_per_price;
-            counter = Integer.parseInt(request.getParameter("save_counter"));
+            counter = Integer.parseInt(request.getParameter("save_counter"));//save_counter is number of product
 //            counter = counter-1;
-            for (int i = 1; i <= counter; i++) {
+            for (int i = 1; i <= counter; i++) {//for loop for insert detail of product.
                 qtd_lineno = Integer.parseInt(request.getParameter("line" + i));
                 qtd_des_head = request.getParameter("deshead" + i);
                 qtd_dest = request.getParameter("description" + i);
                 qtd_item_no = request.getParameter("product" + i);
-                qtd_unit_per_price = Float.parseFloat(request.getParameter("unit_price" + i).replace(",", ""));
+                qtd_unit_per_price = Float.parseFloat(request.getParameter("unit_price" + i).replace(",", ""));//replace "," with "" because in database type is float. float can't record ","(type int is the same).
                 qt_qty = Integer.parseInt(request.getParameter("quantity" + i));
                 qtd_amt = Float.parseFloat(request.getParameter("amount" + i).replace(",", ""));
                 qt_dis_per = Float.parseFloat(request.getParameter("discount_per" + i).replace(",", ""));
@@ -181,7 +174,7 @@
         out.println("Insert Successfully...!");// after insert record successfully message
     }
 %>
-<meta http-equiv=refresh content=1;URL=Quotation.jsp>
+<meta http-equiv=refresh content=1;URL=Quotation.jsp><!-- return to Quotation Page -->
 <%
 } catch (Exception e) {%>
 <!--<script>alert('Please Enter Product');</script>
