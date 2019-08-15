@@ -51,7 +51,7 @@
         if (counts == 0) {//If there is no product. return to Create Quotation Page. %> 
 
             <script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
-            <meta http-equiv= refresh content= 1;URL=Create_Quotation.jsp>
+            <meta http-equiv= refresh content= 1;URL=Create_Quotation.jsp><!-- Return to Create Quotation Page -->
 
 <%
     } else {

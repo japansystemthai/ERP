@@ -20,7 +20,6 @@ try
         response.setCharacterEncoding("UTF-8");
         
         String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
-//	String connectionUrl = "jdbc:mysql://localhost:3306/";
 	String dbName = "erp1";//DataBase Name.
 	String userId = "root";//Username.
 	String password = "1234";//Password.
@@ -31,8 +30,7 @@ try
 		e.printStackTrace();
 	}
         Connection connect = null;
-//	Statement s = null;
-//	ResultSet resultSet = null;
+
         
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
         connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+dbName+"?useUnicode=yes&characterEncoding=UTF-8",userId, password);//Connect Database.

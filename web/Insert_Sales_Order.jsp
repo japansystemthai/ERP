@@ -54,7 +54,7 @@
         if (counts == 0) {//If there is no product. return to Create Sale_Order Page. %>
 
 <script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
-<meta http-equiv= refresh content= 1;URL=Sales_Order.jsp>
+<meta http-equiv= refresh content= 1;URL=Sales_Order.jsp><!-- Return to Create Quotation Page -->
 
 <%
     } else {

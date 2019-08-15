@@ -18,46 +18,43 @@
         response.setContentType("text/html;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-        String driverName = "com.mysql.jdbc.Driver";
-        String connectionUrl = "jdbc:mysql://localhost:3306/";
-        String dbName = "erp1";
-        String userId = "root";
-        String password = "1234";
+        String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
+	String dbName = "erp1";//DataBase Name.
+	String userId = "root";//Username.
+	String password = "1234";//Password.
 
         try {
             Class.forName(driverName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Connection connect = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connect = null;//Create Connection.
 
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);//Connect Database
 
 //        String item_no,item_eng,item_th,size,spec,cus_id,currency,standard_price,mt_unit_price,process_price,date,time;
-        String qt_no, qt_cust_id, qtd_qt_id;
+        String qt_no, qt_cust_id;
         String qt_contact, qt_cont_tel, qt_name, qt_stats, qt_date, qt_valid;
-        String qt_comp_tax, qt_crr_id;
-        String qt_cre_date, qt_cre_time, qt_exp_date, qt_user_id;
-        String qt_comm, qt_valid_term, qt_delivery_term, qt_payment_term, reg_date, reg_time, upd_date, upd_time, flg2 = "";
+        String qt_crr_id;
+        String qt_exp_date, qt_user_id;
+        String qt_comm, qt_valid_term, qt_delivery_term, qt_payment_term, reg_date, reg_time, upd_date, upd_time;
 
         String date, time;
 
         float qt_amt, qt_amt_wotax, qt_discount, qt_subtotal, qt_vat;
         int qt_flg1 = 1, flg1 = 1, qt_id,save_counter;
         
-        save_counter = Integer.parseInt(request.getParameter("save_counter"));
+        save_counter = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of Product in Edit Quotation Page
         
-        if (save_counter == 0) {%>
+        if (save_counter == 0) {//If there is no product. return to Quotation Page.%>
 
-       <script>alert('Please Enter Product');</script>
-       <meta http-equiv= refresh content= 1;URL=Quotation.jsp>
+       <script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
+       <meta http-equiv= refresh content= 1;URL=Quotation.jsp><!-- Return to Quotation Page -->
 
 <%
     } else {
-
+        //getParameter from Edit Quotation Page.
         qt_id = Integer.parseInt(request.getParameter("ID"));
         qt_no = request.getParameter("Quotation_no");
         qt_cust_id = request.getParameter("customer_id");
@@ -68,17 +65,18 @@
         qt_date = request.getParameter("date");
         qt_valid = request.getParameter("valid_until");
         qt_crr_id = request.getParameter("currency");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format because the information taken from create_customer page is type String.
+        LocalDate localDate = LocalDate.now();                            //but data type in database is date So the data must be converted from String to Date.
         date = dtf.format(localDate);
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        time = sdf.format(cal.getTime());
-        qt_exp_date = dtf.format(LocalDate.parse(qt_date).plusDays(30));
-        //qt_exp_date = date;
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");//set Time Format because the information taken from create_customer page is type String.
+        time = sdf.format(cal.getTime());                       //but data type in database is time So the data must be converted from String to time.
+        qt_exp_date = dtf.format(LocalDate.parse(qt_date).plusDays(30));//qt_exp_date it special because it must plus 30 day from qt_date.
+
         qt_user_id = request.getParameter("sales");
         qt_comm = request.getParameter("comment");
-        qt_amt = Float.parseFloat(request.getParameter("qt_amt").replace(",", ""));
+        qt_amt = Float.parseFloat(request.getParameter("qt_amt").replace(",", ""));//replace "," with "" because in database type is float. float can't record ","(type int is the same).
         qt_amt_wotax = Float.parseFloat(request.getParameter("qt_amt_wotax").replace(",", ""));
         qt_discount = Float.parseFloat(request.getParameter("qt_discount").replace(",", ""));
         qt_subtotal = Float.parseFloat(request.getParameter("qt_subtotal").replace(",", ""));
@@ -93,14 +91,14 @@
         
 
 //
-        PreparedStatement pstmt = null, pstmtd = null, pstmtds = null; //create statement 
+        PreparedStatement pstmt = null, pstmtd = null, pstmtds = null; //create statement. 
 //
         pstmt = connect.prepareStatement("UPDATE erp1.qt_head "
                 + "SET QT_NO = ?,QT_CUST_ID = ?,QT_CONTACT=?,QT_CONT_TEL = ?,QT_NAME = ?,QT_STATS = ?,"
                 + "QT_DATE = ?,QT_VALID = ?,QT_CRR_ID = ?,"
                 + "QT_FLG1=?,QT_EXP_DATE = ?,QT_USER_ID = ?,"
                 + "QT_COMM = ?,QT_AMT = ?,QT_AMT_WOTAX = ?,QT_DISCOUNT = ?,QT_SUBTOTAL = ?,QT_VAT = ?,QT_VALID_TERM = ?,QT_DELIVERY_TERM = ?,QT_PAYMENT_TERM = ?,FLG1 = ?,UPD_DATE = ?,UPD_TIME = ?"
-                + "WHERE QT_ID = ?;");
+                + "WHERE QT_ID = ?;");//sql update query. 
 
         pstmt.setString(1, qt_no);
         pstmt.setString(2, qt_cust_id);
@@ -145,24 +143,17 @@
                 + "FLG1 = ?,"
                 + "UPD_DATE = ?,"
                 + "UPD_TIME = ? "
-                + "WHERE QT_ID = ? and QTD_LINENO = ?;"); //sql insert query 14 parameter
-//
-//        statement = connect.createStatement();
-////                        String sql = "SELECT * FROM customer where FLG2 = 0";
-////                        String sql = "select * from qt_head";
-////                        
-        String selectpro;
-        String qtd_id_str;
+                + "WHERE QT_ID = ? and QTD_LINENO = ?;"); //sql update query. 
 
-        int qt_qty, qtd_id, qtd_qt_idi, qtd_lineno, countPro;
+                    
+        String selectpro;
+        int qt_qty, qtd_lineno, countPro;
         String qtd_qt_ids, qtd_dest,qtd_des_head;
         float qt_dis_amt, qt_dis_per, qtd_amt, qtd_unit_per_price, qtd_amt_a_dis;
-        qtd_qt_idi = Integer.parseInt(request.getParameter("ID"));
-        int y = 0;
         qtd_qt_ids = request.getParameter("ID");
-        countPro = Integer.parseInt(request.getParameter("countPro"));
+        countPro = Integer.parseInt(request.getParameter("countPro"));//countPro is Number of Product in Database.Identified by ID that get from Edit Quotation.
         
-        if (countPro == save_counter) {
+        if (countPro == save_counter) { // If the number of products does not change
             for (int i = 1; i <= countPro; i++) {
                 qtd_lineno = Integer.parseInt(request.getParameter("line" + i));
                 selectpro = request.getParameter("product" + i);
@@ -174,7 +165,7 @@
                 qt_dis_per = Float.parseFloat(request.getParameter("discount_per" + i).replace(",", ""));
                 qt_dis_amt = Float.parseFloat(request.getParameter("discountamt" + i).replace(",", ""));
                 qtd_amt_a_dis = Float.parseFloat(request.getParameter("amount_after" + i).replace(",", ""));
-//            qtd_id = Integer.parseInt(request.getParameter(splitqtdid[i]));
+
                 pstmtd.setString(1, qtd_qt_ids);
                 pstmtd.setInt(2, qtd_lineno);
                 pstmtd.setString(3, selectpro);
@@ -194,7 +185,7 @@
                 pstmtd.executeUpdate();
 
             }
-        } else if (countPro < save_counter) {
+        } else if (countPro < save_counter) {//If the number of products in the database is less than the number of products on the Edit Quotation page.
 
             int add;
             add = save_counter - countPro;
@@ -231,10 +222,9 @@
             }
             pstmtds = connect.prepareStatement("INSERT INTO erp1.qt_detail(QT_ID,"
                     + "QTD_LINENO,QTD_ITEM_NO,QTD_DES_HEAD,QTD_DEST,QTD_UNIT_PRICE,QTD_QTY,QTD_AMT,QTD_DISC_PERCENT,QTD_DISC_AMOUNT,QTD_AMT_A_DISC,REG_DATE,REG_TIME)VALUES"
-                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 12 parameter
+                    + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query.
 
-            //statement = connect.createStatement();
-            for (int j = 1; j <= add; j++) {
+            for (int j = 1; j <= add; j++) {//Enter the number of products added.
                 int countp;
                 countp = countPro + j;
 
@@ -283,15 +273,15 @@
                 pstmtds.executeUpdate();
 
             }
-        } else if (countPro > save_counter) {
+        } else if (countPro > save_counter) {//If the number of products in the database is more than the number of products on the Edit Quotation page.
             int del, countdel;
 
             countdel = countPro - save_counter;
             
 
-            pstmtds = connect.prepareStatement("DELETE FROM `erp1`.`qt_detail`WHERE QT_ID = ? and QTD_LINENO = ?;");
+            pstmtds = connect.prepareStatement("DELETE FROM `erp1`.`qt_detail`WHERE QT_ID = ? and QTD_LINENO = ?;");//sql delete query.
 //
-            for (int x = 1; x <= countdel; x++) {
+            for (int x = 1; x <= countdel; x++) {//Remove excess products.
                 del = save_counter + x;
                 pstmtds.setString(1, qtd_qt_ids);
                 pstmtds.setInt(2, del);
@@ -310,7 +300,7 @@
                 qt_dis_per = Float.parseFloat(request.getParameter("discount_per" + i).replace(",", ""));
                 qt_dis_amt = Float.parseFloat(request.getParameter("discountamt" + i).replace(",", ""));
                 qtd_amt_a_dis = Float.parseFloat(request.getParameter("amount_after" + i).replace(",", ""));
-//            qtd_id = Integer.parseInt(request.getParameter(splitqtdid[i]));
+
                 pstmtd.setString(1, qtd_qt_ids);
                 pstmtd.setInt(2, qtd_lineno);
                 pstmtd.setString(3, selectpro);
@@ -333,10 +323,10 @@
         }
 
 //
-        out.println("Update Successfully...!");// after insert record successfully message
+        out.println("Update Successfully...!");// after insert record successfully message.
 
 %>
-<meta http-equiv=refresh content=1;URL=Quotation.jsp>
+<meta http-equiv=refresh content=1;URL=Quotation.jsp><!-- Return to Quotation Page -->
 <%    } 
         }catch (Exception e) {
 

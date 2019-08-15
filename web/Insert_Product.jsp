@@ -66,7 +66,9 @@ try
         while(resultC.next()){ //while loop check item_no have already in datebase.
             Integer itemCount = resultC.getInt("C_item_no");            
             if(itemCount == 1){   
-                %><script>alert('ITEM_NO does exist!!! Please Enter New ITEM_NO');window.history.back();</script><%//Message alert when item_no have already.
+                %><script>alert('ITEM_NO does exist!!! Please Enter New ITEM_NO');</script>
+                        <meta http-equiv=refresh content=1;URL=Product_Master.jsp>                
+                <%//Message alert when item_no have already.
             }else{
                 
 
