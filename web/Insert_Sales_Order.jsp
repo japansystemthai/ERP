@@ -24,6 +24,8 @@
         String dbName = "erp1";//Database Name
         String userId = "root";//Username
         String password = "1234";//Password
+        
+        //comment
 
         try {
             Class.forName(driverName);
