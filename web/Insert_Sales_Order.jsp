@@ -20,42 +20,44 @@
         response.setCharacterEncoding("UTF-8");
 
         String driverName = "com.mysql.jdbc.Driver";
-        String connectionUrl = "jdbc:mysql://localhost:3306/";
-        String dbName = "erp1";
-        String userId = "root";
-        String password = "1234";
+//        String connectionUrl = "jdbc:mysql://localhost:3306/";
+        String dbName = "erp1";//Database Name
+        String userId = "root";//Username
+        String password = "1234";//Password
 
         try {
             Class.forName(driverName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        Connection connect = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
+        Connection connect = null;//Create Connect
+        Statement statement = null;//Used for storing sql commands.
+        ResultSet resultSet = null;//keep data that has been processed.
 
 //        connect = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);//Connect Database
 
 //        String item_no,item_eng,item_th,size,spec,cus_id,currency,standard_price,mt_unit_price,process_price,date,time;
         String od_no, od_cust_id, od_qt_id,od_contact, od_cont_tel, od_name, od_stats, od_odate, od_pay_stat,od_cur_id;
-        String od_cre_date, od_cre_time, od_flg1 = "", qt_exp_date, od_user_id;
-        String od_comm, od_delivery_date, od_pay_date, reg_date, reg_time, flg1 = "", upd_date, upd_time, flg2 = "";
+        String od_cre_date, od_cre_time, od_user_id;
+        String od_comm, od_delivery_date, od_pay_date, reg_date, reg_time;
 
         String date, time;
 
         float od_amt, od_amt_wotax, od_discount, od_subtotal, od_vat;
         int counts = 0;
 
-        counts = Integer.parseInt(request.getParameter("save_counter"));
+        counts = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of Product
 
-        if (counts == 0) {%>
+        if (counts == 0) {//If there is no product. return to Create Sale_Order Page. %>
 
-<script>alert('Please Enter Product');</script>
-<meta http-equiv= refresh content= 1;URL=Create_Quotation.jsp>
+<script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
+<meta http-equiv= refresh content= 1;URL=Sales_Order.jsp>
 
 <%
     } else {
+
+        //getParameter from Create Sales Order Step2 Page or Create Sales Order Skip Page.
         od_qt_id = request.getParameter("od_qt_id");
        
         od_no = request.getParameter("od_no");
@@ -67,22 +69,19 @@
         od_name = request.getParameter("subject");
         od_stats = request.getParameter("od_status");
         od_pay_stat = request.getParameter("od_pay_stat");
-//        //no default of date and time when user not input
         od_odate = request.getParameter("od_odate");
         od_cur_id = request.getParameter("currency");
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format because the information taken from create_customer page is type String.
+        LocalDate localDate = LocalDate.now();                            //but data type in database is date So the data must be converted from String to Date.
         date = dtf.format(localDate);
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        time = sdf.format(cal.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");//set Time Format because the information taken from create_customer page is type String.          
+        time = sdf.format(cal.getTime());                       //but data type in database is time So the data must be converted from String to time.
         od_cre_date = date;
         od_cre_time = time;
-
-//        //qt_exp_date = date;
         od_user_id = request.getParameter("sales");
         od_comm = request.getParameter("comment");
-        od_amt = Float.parseFloat(request.getParameter("od_amt").replace(",", ""));
+        od_amt = Float.parseFloat(request.getParameter("od_amt").replace(",", ""));//replace "," with "" because in database type is float. float can't record ","(type int is the same).
         od_amt_wotax = Float.parseFloat(request.getParameter("od_amt_wotax").replace(",", ""));
         od_discount = Float.parseFloat(request.getParameter("od_discount").replace(",", ""));
         od_subtotal = Float.parseFloat(request.getParameter("od_subtotal").replace(",", ""));
@@ -91,18 +90,16 @@
         od_pay_date = request.getParameter("od_pay_date");
         reg_date = date;
         reg_time = time;
-        upd_date = date;
-        upd_time = time;
 
 
-        PreparedStatement pstmt = null, pstmtd = null; //create statement 
+        PreparedStatement pstmt = null, pstmtd = null; //create statement. 
 
         pstmt = connect.prepareStatement("INSERT INTO erp1.od_head(OD_QT_ID,OD_NO,OD_CUST_ID,"
                 + "OD_CONTACT,OD_CONT_TEL,OD_NAME,OD_ODATE ,OD_STATS,OD_PAY_STAT,OD_CUR_ID,"
                 + "OD_CRE_DATE,"
                 + "OD_CRE_TIME,OD_USER_ID,OD_COMM,OD_DELIVERY_DATE,OD_PAY_DATE,OD_AMT,OD_AMT_WOTAX,OD_DISCOUNT,OD_SUBTOTAL,OD_VAT,"
                 + "REG_DATE,REG_TIME)VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query.
 
         pstmt.setString(1, od_qt_id);
         pstmt.setString(2, od_no);
@@ -127,7 +124,7 @@
         pstmt.setFloat(21, od_vat);   
         pstmt.setString(22, reg_date);
         pstmt.setString(23, reg_time);
-        pstmt.executeUpdate(); //execute query
+        pstmt.executeUpdate(); //execute query.
 
         //connect.close();  //close connection
 //
@@ -138,27 +135,27 @@
         String odd_od_id;
         pstmtd = connect.prepareStatement("INSERT INTO erp1.od_detail(ODD_OD_ID,"
                 + "ODD_LINENO,ODD_ITEM_NO,ODD_DES_HEAD,ODD_DEST,ODD_UNIT_PRICE,ODD_QTY,ODD_AMT,ODD_DISC_PERCENT,ODD_DISC_AMOUNT,ODD_AMT_A_DISC,REG_DATE,REG_TIME)VALUES"
-                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query 12 parameter
+                + "(?,?,?,?,?,?,?,?,?,?,?,?,?)"); //sql insert query.
 
         statement = connect.createStatement();
 //                        String sql = "SELECT * FROM customer where FLG2 = 0";
 //                        String sql = "select * from qt_head";
-        String sql = "SELECT OD_ID FROM erp1.od_head ORDER BY OD_ID DESC LIMIT 0, 1;";
+        String sql = "SELECT OD_ID FROM erp1.od_head ORDER BY OD_ID DESC LIMIT 0, 1;";//sql for selecting the latest OD_ID.
         resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {
+        while (resultSet.next()) {//while loop for selecting the latest OD_ID.
             odd_od_id = resultSet.getString("OD_ID");
 
 //                        String sqluser = "select * from user_master";
             String odd_dest, odd_item_no, odd_des_head;
             int odd_qty, odd_lineno, counter;
             float odd_dis_amt, odd_dis_per, odd_amt, odd_amt_a_dis, odd_unit_per_price;
-            counter = Integer.parseInt(request.getParameter("save_counter"));
-            for (int i = 1; i <= counter; i++) {
+            counter = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of Product
+            for (int i = 1; i <= counter; i++) {//for loop for insert detail of product.
                 odd_lineno = Integer.parseInt(request.getParameter("line" + i));
                 odd_des_head = request.getParameter("deshead" + i);
                 odd_dest = request.getParameter("description" + i);
                 odd_item_no = request.getParameter("product" + i);
-                odd_unit_per_price = Float.parseFloat(request.getParameter("unit_price" + i).replace(",", ""));
+                odd_unit_per_price = Float.parseFloat(request.getParameter("unit_price" + i).replace(",", ""));//replace "," with "" because in database type is float. float can't record ","(type int is the same).
                 odd_qty = Integer.parseInt(request.getParameter("quantity" + i));
                 odd_amt = Float.parseFloat(request.getParameter("amount" + i).replace(",", ""));
                 odd_dis_per = Float.parseFloat(request.getParameter("discount_per" + i).replace(",", ""));
@@ -182,10 +179,10 @@
 
             }
         }
-        out.println("Insert Successfully...!");// after insert record successfully message
+        out.println("Insert Successfully...!");// after insert record successfully message.
     }
 %>
-<meta http-equiv=refresh content=1;URL=Sales_Order.jsp>
+<meta http-equiv=refresh content=1;URL=Sales_Order.jsp><!-- return to Quotation Page -->
 <%
 } catch (Exception e) {%>
 

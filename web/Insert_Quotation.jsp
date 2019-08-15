@@ -34,7 +34,7 @@
         Statement statement = null;//Used for storing sql commands.
         ResultSet resultSet = null;//keep data that has been processed.
 
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);//Connect Database
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=yes&characterEncoding=UTF-8", userId, password);//Connect Database.
         
         String qt_id, qt_no, qt_cust_id, qtd_qt_id;
         String qt_contact, qt_cont_tel, qt_name, qt_stats, qt_date, qt_valid;
@@ -47,7 +47,7 @@
         float qt_amt, qt_amt_wotax, qt_discount, qt_subtotal, qt_vat;
         int counts = 0;
 
-        counts = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of product
+        counts = Integer.parseInt(request.getParameter("save_counter"));//save_counter is Number of product.
         if (counts == 0) {//If there is no product. return to Create Quotation Page. %> 
 
             <script>alert('Please Enter Product');</script><!--Message alert when there is no product-->
@@ -133,7 +133,7 @@
 //                        String sql = "select * from qt_head";
         String sql = "SELECT QT_ID FROM erp1.qt_head ORDER BY QT_ID DESC LIMIT 0, 1;";//sql for selecting the latest QT_ID.
         resultSet = statement.executeQuery(sql);
-        while (resultSet.next()) {//whole loop for selecting the latest QT_ID.
+        while (resultSet.next()) {//while loop for selecting the latest QT_ID.
             qtd_qt_id = resultSet.getString("QT_ID");
 
 //                        String sqluser = "select * from user_master";

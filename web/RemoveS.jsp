@@ -42,10 +42,10 @@
             
             username = String.valueOf(session.getAttribute("username_en"));
             userid = String.valueOf(session.getAttribute("userid"));
-            
-            out.print(user);
-            out.print(username);
-            out.print(userid);
+//            
+//            out.print(user);
+//            out.print(username);
+//            out.print(userid);
               
 
 

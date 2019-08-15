@@ -304,7 +304,7 @@
                         %> </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li><a href="#" class="dropdown-item" onclick="open_Account()">My Account</a></li>
-                        <li><a href="Login.jsp" class="dropdown-item" onclick="logout()">Logout</a></li>    
+                        <li><a href="RemoveS.jsp" class="dropdown-item" onclick="logout()">Logout</a></li>    
                     </ul>
                 </span>
 
