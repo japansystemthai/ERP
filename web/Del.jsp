@@ -38,7 +38,7 @@
         time = sdf.format(cal.getTime());
 
         PreparedStatement pstmt = null; //create statement 
-
+        //from customer master .... if customer id != null 
         if (strCustomerID != null) {
             pstmt = connect.prepareStatement("UPDATE erp1.customer SET FLG1 = 1,UPD_DATE = ?,UPD_TIME = ?,FLG2 = 1 " + " WHERE CUST_ID = '" + strCustomerID + "'"); //sql update query 
 
@@ -53,7 +53,8 @@
 %>
 <meta http-equiv= refresh content= 0;URL=Customer_Master.jsp>
 
-<%        } else if (strProductID != null) {
+<%      //from product master .... if product id != null 
+        } else if (strProductID != null) {
 
     pstmt = connect.prepareStatement("UPDATE erp1.product SET FLG1 = 1,UPD_DATE = ?,UPD_TIME = ?,FLG2 = 1  WHERE ITEM_NO = ?"); //sql update query 
 
@@ -68,6 +69,7 @@
 <meta http-equiv= refresh content= 0;URL=Product_Master.jsp>
 
 <%
+    //from quotation .... if quotation id != null 
         }
 else if (strQuotationID != null) {
 
@@ -84,6 +86,7 @@ else if (strQuotationID != null) {
 <meta http-equiv= refresh content= 0;URL=Quotation.jsp>
 
 <%
+    //from Order .... if Order id != null
         }else if (strOrderID != null) {
 
     pstmt = connect.prepareStatement("UPDATE erp1.od_head SET FLG1 = 1,UPD_DATE = ?,UPD_TIME = ?,FLG2 = 1  WHERE OD_ID = ?"); //sql update query 
@@ -100,7 +103,6 @@ else if (strQuotationID != null) {
 <%
     }
     } catch (Exception e) {
-        // TODO Auto-generated catch block
         out.println(e.getMessage());
         e.printStackTrace();
     }
