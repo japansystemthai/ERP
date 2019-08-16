@@ -16,6 +16,7 @@
         String strUser = request.getParameter("username");
         String userid,username_en;
         
+        //set session
         session.setAttribute("sUser",strUser);
         Class.forName("com.mysql.jdbc.Driver");  // MySQL database connection
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/erp1","root","1234");     
@@ -24,14 +25,16 @@
         pst.setString(2, password);
         ResultSet rs = pst.executeQuery();                        
         if(rs.next()){
-            
             userid = rs.getString("User_ID");
             username_en = rs.getString("USER_NAME_EN");
             session.setAttribute("userid",userid);
             session.setAttribute("username_en",username_en);
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/Mainmenu.jsp");
-            rd.forward(request,response);
+//            ServletContext sc = getServletContext();
+//            RequestDispatcher rd = sc.getRequestDispatcher("/Mainmenu.jsp");
+//            rd.forward(request,response);
+            %>
+            <meta http-equiv= refresh content= 1;URL=Mainmenu.jsp>
+            <%
         }
         else{            
            %>
