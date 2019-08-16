@@ -8,26 +8,23 @@
 <%
     try {
         
-        Connection conn = null;
-        String id = request.getParameter("userId");
-        String driver = "com.mysql.jdbc.Driver";
-        String connectionUrl = "jdbc:mysql://localhost:3306/";
-        String dbName = "erp1";
-        String userId = "root";
-        String password = "1234";
-        Integer i = 1;
-        Statement stmt;
+        Connection conn = null;//create connection.
+        String driver = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
+        String dbName = "erp1";//Database Name.
+        String userId = "root";//Username.
+        String password = "1234";//Password.
+        Statement stmt;//Used for storing sql commands.
 
-        String Content = new String("");
 
         String date, time, dateu, timeu,custid;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format because the information taken from create_customer page is type String.
+        LocalDate localDate = LocalDate.now();                            //but data type in database is date So the data must be converted from String to Date.
         date = dtf.format(localDate);
 
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
-        time = sdf.format(cal.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");//set Time Format because the information taken from create_customer page is type String.
+        time = sdf.format(cal.getTime());                       //but data type in database is time So the data must be converted from String to time.
+
 
         String filename = "Product_CSV_" + date + "_" + time + ".csv";
 
@@ -53,7 +50,7 @@
 //        response.setContentType("application/x-msexcel;charset=Unicode");
         
         try {
-            OutputStream outputStream = response.getOutputStream();
+            OutputStream outputStream = response.getOutputStream();//OutputStream is Writing data out, we will do it through the OutputStream (the flow way: flow out of our program) byte data in our program. Will be sent to the destination (file) automatically.
             outputStream.write(0xEF);
             outputStream.write(0xBB);
             outputStream.write(0xBF);
@@ -61,7 +58,7 @@
             String outputResult = "Item No, Item Name EN, Item Name TH, Size, Spec, Customer ID, Current ID, Standard Price,"
                     + " Material Unit Price, Process, Date of Registeration, Time of Registertion, FLG1, Date of Update, Time of Update, FLG2\n";
             outputStream.write(outputResult.getBytes());
-            while (rs.next()) {
+            while (rs.next()) {//while loop for writing data on csv files
                 outputStream.write(rs.getString(1).getBytes());
                 outputStream.write(",".getBytes());
                 outputStream.write(rs.getString(2).getBytes());
@@ -72,7 +69,7 @@
                 outputStream.write(",".getBytes());
                 outputStream.write(rs.getString(5).getBytes());
                 outputStream.write(",".getBytes());
-                if (rs.getString(6) == null) {
+                if (rs.getString(6) == null) {// If custid is null, it stores the null value that is a string.
                     custid = "null";
                 } else {
                     custid = rs.getString(6);
@@ -93,14 +90,14 @@
                 outputStream.write(",".getBytes());
                 outputStream.write(rs.getString(13).getBytes());
                 outputStream.write(",".getBytes());
-                if (rs.getString(14) == null) {
+                if (rs.getString(14) == null) {// If the date is null, it stores the null value that is a string.
                     dateu = "null";
                 } else {
                     dateu = rs.getString(14);
                 }
                 outputStream.write(dateu.getBytes());
                 outputStream.write(",".getBytes());
-                if (rs.getString(15) == null) {
+                if (rs.getString(15) == null) {// If the time is null, it stores the null value that is a string.
                     timeu = "null";
                 } else {
                     timeu = rs.getString(15);
@@ -110,7 +107,7 @@
                 outputStream.write(rs.getString(16).getBytes());
                 outputStream.write("\n".getBytes());
             }
-            outputStream.flush();
+            outputStream.flush();//write file
             outputStream.close();
         } catch (Exception e) {
             System.out.println(e.toString());

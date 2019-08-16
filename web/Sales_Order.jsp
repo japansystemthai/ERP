@@ -14,12 +14,11 @@
 <%@page import="java.sql.Connection"%>
 <!DOCTYPE html>
 <%
-    String id = request.getParameter("ITEM_NO");
-    String driverName = "com.mysql.jdbc.Driver";
+    String driverName = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
     String connectionUrl = "jdbc:mysql://localhost:3306/";
-    String dbName = "erp1";
-    String userId = "root";
-    String password = "1234";
+    String dbName = "erp1";//DataBase Name.
+    String userId = "root";//Username.
+    String password = "1234";//Password.
 
     try {
         Class.forName(driverName);
@@ -27,9 +26,9 @@
         e.printStackTrace();
     }
 
-    Connection connection = null;
-    Statement statement = null;
-    ResultSet resultSet = null;
+     Connection connection = null;//create connection.
+     Statement statement = null;//Used for storing sql commands.
+     ResultSet resultSet = null;//keep data that has been processed.
 
 %> 
 <!DOCTYPE html>
@@ -38,28 +37,20 @@
         <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"><!--
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        -->        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script><!--
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        
-        -->        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet"><!--
-        
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        -->        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"><!--
-        -->        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"><!--
-        -->        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma"><!--
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
         <%-- Dropdown --%>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta charset="UTF-8"><!--
-        -->        <link href="css/style5.css" rel="stylesheet" type="text/css"/>
+        <meta charset="UTF-8">
+        <link href="css/style5.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script><!--
-        -->        <script src="js/main.js" type="text/javascript"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <script src="js/main.js" type="text/javascript"></script>
 
 
         <title>Sales Order</title> 
@@ -303,7 +294,8 @@
 
     </head> 
     <body> 
-        <% String User = String.valueOf(session.getAttribute("sUser"));
+        <% //Create and Set session.
+            String User = String.valueOf(session.getAttribute("sUser"));
             session.setAttribute("User", User);
             String username = String.valueOf(session.getAttribute("username_en"));
             session.setAttribute("username", username);
@@ -412,7 +404,7 @@
                                 + "where od_head.`FLG2` = 0;";
 
 //                        String sqluser = "select * from user_master";
-                        resultSet = statement.executeQuery(sql);
+                        resultSet = statement.executeQuery(sql);//sql select query
                 %>
                 <table class="table table-bordered" id="myTable">
 
@@ -467,9 +459,9 @@
                                 </div>
 
                             </td>
-                             <% SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+                             <% SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");//Change the format to the desired format.
                                 String creDate = formatter.format(resultSet.getDate("OD_ODATE"));
-                                DecimalFormat formatcomma = new DecimalFormat("#,##0.00");
+                                DecimalFormat formatcomma = new DecimalFormat("#,##0.00");//Change the format to the desired format.
                                 float qt_amt = resultSet.getFloat("OD_AMT");
                                 String stramt = formatcomma.format(qt_amt);
                             %>
@@ -592,13 +584,6 @@
 
             }
         </script>
-
-        <!-- JS -->
-        <!--        <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/nouislider/nouislider.min.js"></script>
-                <script src="vendor/wnumb/wNumb.js"></script>
-                <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-                <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>-->
         <%
             }
         %>

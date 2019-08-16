@@ -18,49 +18,49 @@
 <%@page import="java.io.*" %>
 <%
 
-    Connection conn = null;
-    String id = request.getParameter("userId");
-    String driver = "com.mysql.jdbc.Driver";
+    Connection conn = null;//create Connection.
+    String driver = "com.mysql.jdbc.Driver";//Check mysql jdbc Driver add from Libraries.
     String connectionUrl = "jdbc:mysql://localhost:3306/";
-    String dbName = "erp1";
-    String userId = "root";
-    String password = "1234";
+    String dbName = "erp1";//Database Name.
+    String userId = "root";//Username.
+    String password = "1234";//Password.
     Integer i = 1;
-    Statement stmt;
+    Statement stmt;//Used for storing sql commands.
 
     Class.forName(driver).newInstance();
-    conn = DriverManager.getConnection(connectionUrl + dbName, userId, password);
-    String query = "select * from product";
+    conn = DriverManager.getConnection(connectionUrl + dbName, userId, password);//connect database.
+    String query = "select * from product";//sql seklect query.
     stmt = conn.createStatement();
 
     ResultSet rs = stmt.executeQuery(query);
 
     try {
 
-// create a small spreadsheet
+        // create a small spreadsheet.
         HSSFWorkbook wb = new HSSFWorkbook();
         HSSFSheet sheet = wb.createSheet();
         HSSFRow row = sheet.createRow(0);
         sheet.addMergedRegion(new CellRangeAddress(
-                0, //first row (0-based)
-                0, //last row (0-based)
-                0, //first column (0-based)
-                0 //last column (0-based)
+                0, //first row (0-based).
+                0, //last row (0-based).
+                0, //first column (0-based).
+                0 //last column (0-based).
         ));
 
         String date, time;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");//set Date Format because the information taken from create_customer page is type String.
+        LocalDate localDate = LocalDate.now();                            //but data type in database is date So the data must be converted from String to Date.
         date = dtf.format(localDate);
 
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");
-        time = sdf.format(cal.getTime());
+        SimpleDateFormat sdf = new SimpleDateFormat("HH_mm_ss");//set Time Format because the information taken from create_customer page is type String.
+        time = sdf.format(cal.getTime());                       //but data type in database is time So the data must be converted from String to time.
 
-        String filename = "product_xls_" + date + "_" + time + ".xls";
+        String filename = "product_xls_" + date + "_" + time + ".xls";//create filename
 
-        HSSFCell cell;
+        HSSFCell cell;//The cell will save the data to a file .xml.
         row = sheet.createRow(0);
+        //Create column header.
         cell = row.createCell(0);
         cell.setCellValue("Item_NO");
         cell = row.createCell(1);
@@ -95,7 +95,7 @@
         cell.setCellValue("FLG2");
 
         while (rs.next()) {
-
+            //Write data into a file. xml.
             row = sheet.createRow(i);
             cell = row.createCell(0);
             cell.setCellValue(rs.getString(1));
@@ -134,18 +134,18 @@
             i++;
         }
 
-// write it as an excel attachment
+        // write it as an excel attachment.
         conn.close();
         ByteArrayOutputStream outByteStream = new ByteArrayOutputStream();
         wb.write(outByteStream);
         byte[] outArray = outByteStream.toByteArray();
-        response.setContentType("application/ms-excel");
+        response.setContentType("application/ms-excel");//Set recording type.
         response.setContentLength(outArray.length);
         response.setHeader("Expires:", "0"); // eliminates browser caching
-        response.setHeader("Content-Disposition", "attachment; filename= " + filename);
-        OutputStream outStream = response.getOutputStream();
+        response.setHeader("Content-Disposition", "attachment; filename= " + filename);//set filename.
+        OutputStream outStream = response.getOutputStream();//OutputStream is Writing data out, we will do it through the OutputStream (the flow way: flow out of our program) byte data in our program. Will be sent to the destination (file) automatically.
         outStream.write(outArray);
-        outStream.flush();
+        outStream.flush();//write file.
     } catch (Exception e) {
         e.printStackTrace();
     }

@@ -403,7 +403,7 @@
                                 + "INNER JOIN `erp1`.`customer` customer ON qt_head.`QT_CUST_ID` = customer.`CUST_ID` "
                                 + "INNER JOIN `erp1`.`user_master` userm ON qt_head.`QT_USER_ID` = userm.`USER_ID`  "
                                 + "where qt_head.`FLG2` = 0;";
-                        resultSet = statement.executeQuery(sql);//sql view query. 
+                        resultSet = statement.executeQuery(sql);//sql Select query. 
                 %>
                 <table class="table table-bordered" id="myTable">
 
@@ -462,10 +462,10 @@
                             <td><%=resultSet.getString("CUST_NAME")%></td>
                             <td><%=resultSet.getString("QT_NAME")%></td>
                             <td><%=resultSet.getString("USER_NAME_EN")%></td>
-                            <% SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+                            <% SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");//Change the format to the desired format.
                                 String creDate = formatter.format(resultSet.getDate("QT_DATE"));
                                 String expireDate = formatter.format(resultSet.getDate("QT_VALID"));
-                                DecimalFormat formatcomma = new DecimalFormat("#,##0.00");
+                                DecimalFormat formatcomma = new DecimalFormat("#,##0.00");//Change the format to the desired format.
                                 float qt_amt = resultSet.getFloat("QT_AMT");
                                 String stramt = formatcomma.format(qt_amt);
                                 
@@ -586,13 +586,6 @@
 
             }
         </script>
-
-        <!-- JS -->
-        <!--        <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/nouislider/nouislider.min.js"></script>
-                <script src="vendor/wnumb/wNumb.js"></script>
-                <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-                <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>-->
         <%
             }
         %>
